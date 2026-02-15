@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Indian Navy Official</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
+      
+      body { font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+      .navy-gradient { background: linear-gradient(135deg, #001f3f 0%, #00122e 100%); }
+      .gold-text { color: #facc15; }
+      .gold-bg { background-color: #facc15; }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+
+      .contact-tab.active {
+        background-color: #001f3f;
+        color: #facc15;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+      .contact-tab {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      input:focus, textarea:focus, select:focus {
+        border-color: #001f3f;
+        box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+      }
+            .navy-gradient {
+        background: linear-gradient(
+          135deg,
+          #000033 0%,
+          #000080 50%,
+          #003366 100%
+        );
+      }
+      .navy-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000033' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .hero-overlay {
+        background: rgba(0, 0, 51, 0.7);
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #ffd700;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+
+    </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                primary: "#000080",
+                secondary: "#003366",
+                accent: "#FFD700",
+                light: "#E6E6FA",
+                dark: "#000033",
+              },
+            },
+            fontFamily: {
+              sans: ["Roboto", "Arial", "sans-serif"],
+              heading: ["Montserrat", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+  </head>
+  <body class="min-h-screen bg-gray-50 font-sans navy-pattern">
+    <!-- Header with Navigation -->
+    <header class="sticky top-0 z-50 shadow-lg">
+      <!-- Top Banner -->
+      <div class="bg-navy-primary text-white py-2 px-4">
+        <div class="items-center" style="margin-left: 50%">
+          <i class="fas fa-anchor text-navy-accent mr-2"></i>
+          <span class="text-sm font-medium">हर काम देश के नाम</span>
+        </div>
+      </div>
+
+      <!-- Main Navigation -->
+      <nav class="bg-white">
+        <div class="container mx-auto px-4">
+          <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+              <div class="flex items-center space-x-3">
+                <div
+                  class="w-10 h-10 rounded-full bg-navy-primary flex items-center justify-center"
+                >
+                 <a href="home-three.html"> <i class="fas fa-anchor text-white text-xl"></i></a>
+                </div>
+                <div>
+                  <h1 class="text-xl font-heading font-bold text-navy-primary">
+                   <a href="home-three.html">ITTTM</a>
+                  </h1>
+                  <p class="text-xs text-gray-600">Bharatiya Nau Sena</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-1">
+              <!-- Home with Dropdown -->
+              <div class="relative dropdown">
+                <button
+                  class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+                >
+                  <i class="fas fa-home mr-2"></i><a href="home-three.html"> Home</a>
+                  <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div
+                  class="dropdown-menu absolute left-0 mt-2 w-64 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200"
+                >
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('unit-glance');
+                    "
+                  >
+                    <i class="fas fa-eye mr-3 text-navy-primary"></i>
+                    Unit at Glance
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('photo-gallery');
+                    "
+                  >
+                    <i class="fas fa-images mr-3 text-navy-primary"></i>
+                    Photo Gallery
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('technical-updates');
+                    "
+                  >
+                    <i class="fas fa-sync-alt mr-3 text-navy-primary"></i>
+                    Technical Updates
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('quick-dashboard');
+                    "
+                  >
+                    <i class="fas fa-tachometer-alt mr-3 text-navy-primary"></i>
+                    Quick Dashboard
+                  </a>
+                </div>
+              </div>
+
+              <!-- About Us with Dropdown -->
+              <div class="relative dropdown">
+                <button
+                  class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+                >
+                  <i class="fas fa-info-circle mr-2"></i> About Us
+                  <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div
+                  class="dropdown-menu absolute left-0 mt-2 w-72 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200"
+                >
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('organisation-hierarchy');
+                    "
+                  >
+                    <i class="fas fa-sitemap mr-3 text-navy-primary"></i>
+                    Organisation Hierarchy
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('mission-vision');
+                    "
+                  >
+                    <i class="fas fa-bullseye mr-3 text-navy-primary"></i>
+                    Mission/Vision
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('charter-duties');
+                    "
+                  >
+                    <i class="fas fa-file-contract mr-3 text-navy-primary"></i>
+                    Charter of Duties
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('governing-policies');
+                    "
+                  >
+                    <i class="fas fa-gavel mr-3 text-navy-primary"></i>
+                    Governing Policies
+                  </a>
+                </div>
+              </div>
+
+              <!-- KMS (No Dropdown) -->
+              <a
+              href="kms.html"                
+                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+              >
+                <i class="fas fa-book mr-2"></i> KMS
+              </a>
+
+              <!-- Contact Us (No Dropdown) -->
+              <a
+                href="contactus.html"
+                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+              >
+                <i class="fas fa-address-book mr-2"></i> Contact Us
+              </a>
+
+              <!-- Help (No Dropdown) -->
+              <a
+                href="#"
+                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+                onclick="
+                  event.preventDefault();
+                  showContent('help');
+                "
+              >
+                <i class="fas fa-question-circle mr-2"></i> Help
+              </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+              id="mobile-menu-button"
+              class="lg:hidden text-navy-primary p-2"
+            >
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden bg-white shadow-lg">
+      <div class="px-4 py-3 space-y-1">
+        <!-- Home Mobile -->
+        <div class="border-b border-gray-100 pb-2">
+          <button
+            class="w-full text-left py-3 text-gray-700 font-medium flex items-center justify-between"
+            onclick="toggleMobileSubmenu('home-mobile')"
+          >
+            <span><i class="fas fa-home mr-3"></i> Home</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="home-mobile" class="hidden pl-8 space-y-2 mt-2">
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('unit-glance');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-eye mr-3"></i> Unit at Glance
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('photo-gallery');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-images mr-3"></i> Photo Gallery
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('technical-updates');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-sync-alt mr-3"></i> Technical Updates
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('quick-dashboard');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-tachometer-alt mr-3"></i> Quick Dashboard
+            </a>
+          </div>
+        </div>
+
+        <!-- About Us Mobile -->
+        <div class="border-b border-gray-100 pb-2">
+          <button
+            class="w-full text-left py-3 text-gray-700 font-medium flex items-center justify-between"
+            onclick="toggleMobileSubmenu('about-mobile')"
+          >
+            <span><i class="fas fa-info-circle mr-3"></i> About Us</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="about-mobile" class="hidden pl-8 space-y-2 mt-2">
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('organisation-hierarchy');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-sitemap mr-3"></i> Organisation Hierarchy
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('mission-vision');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-bullseye mr-3"></i> Mission/Vision
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('charter-duties');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-file-contract mr-3"></i> Charter of Duties
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('governing-policies');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-gavel mr-3"></i> Governing Policies
+            </a>
+          </div>
+        </div>
+
+        <!-- Other Menu Items -->
+        <a
+          href="#"
+          class="block py-3 text-gray-700 font-medium border-b border-gray-100"
+          onclick="
+            event.preventDefault();
+            showContent('kms');
+            toggleMobileMenu();
+          "
+        >
+          <i class="fas fa-book mr-3"></i> KMS
+        </a>
+        <a
+          href="#"
+          class="block py-3 text-gray-700 font-medium border-b border-gray-100"
+          onclick="
+            event.preventDefault();
+            showContent('contact-us');
+            toggleMobileMenu();
+          "
+        >
+          <i class="fas fa-address-book mr-3"></i> Contact Us
+        </a>
+        <a
+          href="#"
+          class="block py-3 text-gray-700 font-medium"
+          onclick="
+            event.preventDefault();
+            showContent('help');
+            toggleMobileMenu();
+          "
+        >
+          <i class="fas fa-question-circle mr-3"></i> Help
+        </a>
+      </div>
+    </div>
+
+    <!-- Dedicated Contact Page Content -->
+    <main class="min-h-screen py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-4 md:px-12">
+        
+        <!-- Header Section -->
+        <div class="mb-16">
+          <h2 class="text-3xl md:text-5xl font-black text-[#001f3f] uppercase tracking-tighter mb-4">
+            Official <span class="text-yellow-500">Assistance</span> Portal
+          </h2>
+          <p class="text-gray-500 max-w-2xl text-sm md:text-base leading-relaxed">
+            Connect with the specific naval unit for your requirements. Our dedicated support teams in Unit 1 and Unit 2 are ready to facilitate your requests through official channels.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
+          
+          <!-- SIDEBAR: Official Contact Details -->
+          <div class="lg:col-span-4 space-y-6">
+            <div class="bg-[#001f3f] text-white p-10 rounded-[2rem] shadow-2xl relative overflow-hidden border border-white/10">
+              <i class="fa-solid fa-anchor absolute -bottom-16 -right-16 text-white/5 text-[240px] pointer-events-none"></i>
+              
+              <h3 class="text-xs font-black gold-text uppercase tracking-[0.3em] mb-10 flex items-center gap-2">
+                <span class="w-8 h-px bg-yellow-400/30"></span> Global Directory
+              </h3>
+              
+              <div class="space-y-10 relative z-10">
+                <!-- Phone -->
+                <div class="group">
+                  <div class="flex items-center gap-4 mb-2">
+                    <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-yellow-400 transition-colors">
+                      <i class="fa-solid fa-phone text-sm gold-text group-hover:text-blue-900"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Phone Number</span>
+                  </div>
+                  <p class="text-xl font-bold tracking-tight pl-12">+91-11-23011392</p>
+                </div>
+
+                <!-- Fax -->
+                <div class="group">
+                  <div class="flex items-center gap-4 mb-2">
+                    <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-yellow-400 transition-colors">
+                      <i class="fa-solid fa-print text-sm gold-text group-hover:text-blue-900"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Fax Number</span>
+                  </div>
+                  <p class="text-xl font-bold tracking-tight pl-12">+91-11-23011234</p>
+                </div>
+
+                <!-- Email -->
+                <div class="group">
+                  <div class="flex items-center gap-4 mb-2">
+                    <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-yellow-400 transition-colors">
+                      <i class="fa-solid fa-envelope text-sm gold-text group-hover:text-blue-900"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Official Email</span>
+                  </div>
+                  <p class="text-xl font-bold tracking-tight pl-12 break-all">assistance@navy.gov.in</p>
+                </div>
+              </div>
+
+              <div class="mt-16 pt-8 border-t border-white/10 flex items-center gap-4">
+                 <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Support Active 24/7</p>
+              </div>
+            </div>
+
+            <!-- HQ Address Card -->
+            <div class="bg-white p-8 rounded-[2rem] shadow-lg border border-gray-100 flex items-start gap-5">
+              <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-location-dot text-blue-900"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[#001f3f] mb-2 uppercase text-xs tracking-widest">Headquarters</h4>
+                <p class="text-sm text-gray-500 leading-relaxed font-medium">
+                  Integrated HQ Ministry of Defence (Navy), Sena Bhawan, New Delhi - 110011
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAIN FORM: Unit Assistance System -->
+          <div class="lg:col-span-8">
+            <div class="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-gray-100">
+              
+              <!-- Segmented Controls / Tabs -->
+              <div class="flex p-3 bg-slate-50 border-b border-gray-100 gap-2">
+                <button onclick="switchUnit(1)" id="tab-1" class="contact-tab active flex-1 py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3">
+                  <i class="fa-solid fa-shield-halved"></i> Unit 1 Request
+                </button>
+                <button onclick="switchUnit(2)" id="tab-2" class="contact-tab flex-1 py-5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] text-gray-400 hover:text-[#001f3f] flex items-center justify-center gap-3">
+                  <i class="fa-solid fa-plane-up"></i> Unit 2 Request
+                </button>
+              </div>
+
+              <!-- Forms Section -->
+              <div class="p-8 md:p-14">
+                
+                <!-- UNIT 1 FORM -->
+                <div id="form-unit-1" class="animate-fade-in">
+                  <div class="mb-10 flex items-center gap-4">
+                    <div class="h-10 w-1.5 bg-yellow-400 rounded-full"></div>
+                    <div>
+                      <h3 class="text-2xl font-black text-[#001f3f] tracking-tight">Fleet Assistance (Unit 1)</h3>
+                      <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mt-1">Maritime Operations & Logistics</p>
+                    </div>
+                  </div>
+
+                  <form class="space-y-8" onsubmit="handleFormSubmit(event, 'Unit 1')">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Requester Name</label>
+                        <input type="text" placeholder="e.g. Lt. Cdr. Rajesh Kumar" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent border-2 outline-none transition-all placeholder:text-gray-300" required>
+                      </div>
+                      <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Contact Email</label>
+                        <input type="email" placeholder="name@domain.com" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent border-2 outline-none transition-all placeholder:text-gray-300" required>
+                      </div>
+                    </div>
+
+                    <div class="space-y-3">
+                      <label class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Request Category</label>
+                      <select class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent border-2 outline-none transition-all appearance-none cursor-pointer">
+                        <option>Operational Support Request</option>
+                        <option>Fleet Logistics Coordination</option>
+                        <option>Supply Chain Assistance</option>
+                        <option>Emergency Clearance</option>
+                      </select>
+                    </div>
+
+                    <div class="space-y-3">
+                      <label class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Request Details</label>
+                      <textarea rows="5" placeholder="Please describe the nature of assistance required from Unit 1..." class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent border-2 outline-none transition-all resize-none placeholder:text-gray-300" required></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-5 bg-[#001f3f] text-yellow-400 font-black rounded-2xl shadow-xl hover:shadow-blue-900/20 hover:-translate-y-1 transition-all active:scale-[0.98] uppercase tracking-[0.3em] text-xs">
+                      Send Unit 1 Official Request
+                    </button>
+                  </form>
+                </div>
+
+                <!-- UNIT 2 FORM -->
+                <div id="form-unit-2" class="hidden animate-fade-in">
+                  <div class="mb-10 flex items-center gap-4">
+                    <div class="h-10 w-1.5 bg-blue-900 rounded-full"></div>
+                    <div>
+                      <h3 class="text-2xl font-black text-[#001f3f] tracking-tight">Aviation & Ops (Unit 2)</h3>
+                      <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mt-1">Naval Air Arm & Special Operations</p>
+                    </div>
+                  </div>
+
+                  <form class="space-y-8" onsubmit="handleFormSubmit(event, 'Unit 2')">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Requester Name</label>
+                        <input type="text" placeholder="Official Name" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent border-2 outline-none transition-all placeholder:text-gray-300" required>
+                      </div>
+                      <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Contact Email</label>
+                        <input type="email" placeholder="official@navy.gov.in" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent border-2 outline-none transition-all placeholder:text-gray-300" required>
+                      </div>
+                    </div>
+
+                    <div class="space-y-3">
+                      <label class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Aviation Support Category</label>
+                      <select class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent border-2 outline-none transition-all appearance-none cursor-pointer">
+                        <option>Air Arm Technical Support</option>
+                        <option>Hangar & Landing Coordination</option>
+                        <option>Special Ops Clearance</option>
+                        <option>Personnel Training Request</option>
+                      </select>
+                    </div>
+
+                    <div class="space-y-3">
+                      <label class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em]">Message Body</label>
+                      <textarea rows="5" placeholder="Specify your request for Unit 2 assistance here..." class="w-full px-6 py-4 rounded-2xl bg-slate-50 border-transparent border-2 outline-none transition-all resize-none placeholder:text-gray-300" required></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-5 bg-[#001f3f] text-yellow-400 font-black rounded-2xl shadow-xl hover:shadow-blue-900/20 hover:-translate-y-1 transition-all active:scale-[0.98] uppercase tracking-[0.3em] text-xs">
+                      Submit Unit 2 Tasking Order
+                    </button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#00122e] text-white pt-16 pb-12 px-4 md:px-24">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+        <div class="flex items-center gap-4">
+          <i class="fa-solid fa-anchor text-yellow-400 text-3xl"></i>
+          <div>
+            <h4 class="text-xl font-black tracking-tight">INDIAN NAVY</h4>
+            <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mt-1">Official Support Portal</p>
+          </div>
+        </div>
+        <div class="flex gap-10 text-[10px] font-black uppercase tracking-widest text-gray-400">
+          <a href="#" class="hover:text-yellow-400 transition-colors">Privacy</a>
+          <a href="#" class="hover:text-yellow-400 transition-colors">Terms</a>
+          <a href="#" class="hover:text-yellow-400 transition-colors">Legal</a>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-white/5 text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+        © 2024 INDIAN NAVY. Information provided on this portal is subject to official naval protocols.
+      </div>
+    </footer>
+
+    <script>
+      function switchUnit(unitId) {
+        const tab1 = document.getElementById('tab-1');
+        const tab2 = document.getElementById('tab-2');
+        const form1 = document.getElementById('form-unit-1');
+        const form2 = document.getElementById('form-unit-2');
+
+        if (unitId === 1) {
+          tab1.classList.add('active');
+          tab2.classList.remove('active', 'text-white');
+          tab2.classList.add('text-gray-400');
+          form1.classList.remove('hidden');
+          form2.classList.add('hidden');
+        } else {
+          tab2.classList.add('active');
+          tab1.classList.remove('active', 'text-white');
+          tab1.classList.add('text-gray-400');
+          form2.classList.remove('hidden');
+          form1.classList.add('hidden');
+        }
+      }
+
+      function handleFormSubmit(event, unit) {
+        event.preventDefault();
+        const btn = event.target.querySelector('button');
+        const originalText = btn.innerText;
+        
+        btn.innerText = 'Processing Official Request...';
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+        setTimeout(() => {
+          alert(`Official Request for ${unit} has been logged in the system. A reference ID will be sent to your email.`);
+          btn.innerText = originalText;
+          btn.disabled = false;
+          btn.classList.remove('opacity-50', 'cursor-not-allowed');
+          event.target.reset();
+        }, 1500);
+      }
+    </script>
+  </body>
+</html>

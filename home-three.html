@@ -1,0 +1,1548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <base target="_self" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indian Navy - Official Portal</title>
+    <meta
+      name="description"
+      content="Official homepage of the Indian Navy featuring organizational information, resources, and contact details"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                primary: "#000080",
+                secondary: "#003366",
+                accent: "#FFD700",
+                light: "#E6E6FA",
+                dark: "#000033",
+              },
+            },
+            fontFamily: {
+              sans: ["Roboto", "Arial", "sans-serif"],
+              heading: ["Montserrat", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .navy-gradient {
+        background: linear-gradient(
+          135deg,
+          #000033 0%,
+          #000080 50%,
+          #003366 100%
+        );
+      }
+      .navy-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000033' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .hero-overlay {
+        background: rgba(0, 0, 51, 0.7);
+      }
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: #ffd700;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Container */
+      .wave-wrapper {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 260px;
+      }
+
+      /* Each wave layer */
+      .wave {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        animation:
+          flow 10s linear infinite,
+          float 4s ease-in-out infinite;
+      }
+
+      .wave:nth-child(2) {
+        opacity: 0.7;
+        animation-duration: 14s, 6s;
+      }
+
+      .wave:nth-child(3) {
+        opacity: 0.4;
+        animation-duration: 18s, 8s;
+      }
+
+      /* Horizontal flow */
+      @keyframes flow {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* Vertical bobbing */
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+      /* Login Button Base */
+.login-btn {
+  background: linear-gradient(135deg, #000080, #003366);
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 128, 0.4);
+}
+
+/* Glow animation */
+.login-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+
+/* Shine on hover */
+.login-btn:hover::before {
+  left: 125%;
+}
+
+/* Hover effects */
+.login-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 128, 0.6);
+}
+
+.banner-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 22px;
+  border-radius: 40px;
+  border: 1.5px solid #ffd700;
+  background-color: rgba(255, 215, 0, 0.04);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: borderPulse 3s ease-in-out infinite;
+}
+
+/* Subtle Pulse */
+@keyframes borderPulse {
+  0% { box-shadow: 0 0 0px rgba(255, 215, 0, 0.2); }
+  50% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
+  100% { box-shadow: 0 0 0px rgba(255, 215, 0, 0.2); }
+}
+
+/* Light Sweep Effect */
+.banner-pill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: sweep 4s infinite;
+}
+
+@keyframes sweep {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* Hover effect */
+.banner-pill:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 215, 0, 0.08);
+}
+
+.banner-main {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.banner-sub {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffd700;
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background-color: rgba(255, 215, 0, 0.6);
+}
+
+
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-50 font-sans navy-pattern">
+    <!-- Header with Navigation -->
+    <header class="sticky top-0 z-50 shadow-lg">
+      <!-- Top Banner -->
+      <!-- <div class="bg-navy-primary text-white py-2 px-4">
+        <div class="items-center" style="margin-left: 50%">
+          <i class="fas fa-anchor text-navy-accent mr-2"></i>
+          <span class="text-sm font-medium">हर काम देश के नाम</span>
+        </div>
+      </div> -->
+      <!-- Top Banner -->
+<!-- Top Banner -->
+<!-- Top Banner -->
+<div class="bg-navy-primary text-white py-3 px-4">
+  <div class="container mx-auto flex justify-center">
+
+    <div class="banner-pill">
+      <span class="banner-main">
+        Integrated Trial Testing and Tuning Module
+      </span>
+
+      <span class="divider"></span>
+
+      <span class="banner-sub">
+        DTTT MUMBAI
+      </span>
+    </div>
+
+  </div>
+</div>
+
+
+
+      <!-- Main Navigation -->
+      <nav class="bg-white">
+        <div class="container mx-auto px-4">
+          <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+              <div class="flex items-center space-x-3">
+                <div
+                  class="w-10 h-10 rounded-full bg-navy-primary flex items-center justify-center"
+                >
+                  <i class="fas fa-anchor text-white text-xl"></i>
+                </div>
+                <div>
+                  <h1 class="text-xl font-heading font-bold text-navy-primary">
+                   <a href="home-three.html"> ITTTM</a>
+                  </h1>
+                  <!-- <p class="text-xs text-gray-600">Bharatiya Nau Sena</p> -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+<div class="hidden lg:flex items-center space-x-6 w-full justify-center">
+              <!-- Home with Dropdown -->
+              <div class="relative dropdown">
+                <button
+                  class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+                >
+                  <i class="fas fa-home mr-2"></i> <a href="home-three.html">Home</a>
+                  <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div
+                  class="dropdown-menu absolute left-0 mt-2 w-64 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200"
+                >
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('unit-glance');
+                    "
+                  >
+                    <i class="fas fa-eye mr-3 text-navy-primary"></i>
+                    Unit at Glance
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('photo-gallery');
+                    "
+                  >
+                    <i class="fas fa-images mr-3 text-navy-primary"></i>
+                    Photo Gallery
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('technical-updates');
+                    "
+                  >
+                    <i class="fas fa-sync-alt mr-3 text-navy-primary"></i>
+                    Technical Updates
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('quick-dashboard');
+                    "
+                  >
+                    <i class="fas fa-tachometer-alt mr-3 text-navy-primary"></i>
+                    Quick Dashboard
+                  </a>
+                </div>
+              </div>
+
+              <!-- About Us with Dropdown -->
+              <div class="relative dropdown">
+                <button
+                  class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+                >
+                  <i class="fas fa-info-circle mr-2"></i> <a href="about-us.html">About Us</a>
+                  <!-- <i class="fas fa-chevron-down ml-2 text-xs"></i> -->
+                </button>
+                <!-- <div
+                  class="dropdown-menu absolute left-0 mt-2 w-72 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200"
+                >
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('organisation-hierarchy');
+                    "
+                  >
+                    <i class="fas fa-sitemap mr-3 text-navy-primary"></i>
+                    Organisation Hierarchy
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('mission-vision');
+                    "
+                  >
+                    <i class="fas fa-bullseye mr-3 text-navy-primary"></i>
+                    Mission/Vision
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('charter-duties');
+                    "
+                  >
+                    <i class="fas fa-file-contract mr-3 text-navy-primary"></i>
+                    Charter of Duties
+                  </a>
+                  <a
+                    href="#"
+                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
+                    onclick="
+                      event.preventDefault();
+                      showContent('governing-policies');
+                    "
+                  >
+                    <i class="fas fa-gavel mr-3 text-navy-primary"></i>
+                    Governing Policies
+                  </a>
+                </div> -->
+              </div>
+
+              <!-- KMS (No Dropdown) -->
+              <a
+                href="kms.html"
+                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+                
+              >
+                <i class="fas fa-book mr-2"></i> KMS
+              </a>
+
+              <!-- Contact Us (No Dropdown) -->
+              <a
+                href="contactus.html"
+                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+              >
+                <i class="fas fa-address-book mr-2"></i> Contact Us
+              </a>
+
+              <!-- Help (No Dropdown) -->
+              <a
+                href=""
+                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
+                onclick="
+                  event.preventDefault();
+                  showContent('help');
+                "
+              >
+                <i class="fas fa-question-circle mr-2"></i> Help
+              </a>
+              <!-- Login Button -->
+<!-- Animated Login Button -->
+ <div class="hidden lg:flex items-center absolute right-6">
+<a
+  href="login.html"
+  class="login-btn relative ml-4 px-6 py-2 font-semibold text-white rounded-full overflow-hidden"
+>
+  <span class="relative z-10 flex items-center">
+  <i class="fas fa-shield-alt mr-2"></i>
+ Login
+  </span>
+</a>
+</div>
+
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+              id="mobile-menu-button"
+              class="lg:hidden text-navy-primary p-2"
+            >
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden bg-white shadow-lg">
+      <div class="px-4 py-3 space-y-1">
+        <!-- Home Mobile -->
+        <div class="border-b border-gray-100 pb-2">
+          <button
+            class="w-full text-left py-3 text-gray-700 font-medium flex items-center justify-between"
+            onclick="toggleMobileSubmenu('home-mobile')"
+          >
+            <span><i class="fas fa-home mr-3"></i> Home</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="home-mobile" class="hidden pl-8 space-y-2 mt-2">
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('unit-glance');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-eye mr-3"></i> Unit at Glance
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('photo-gallery');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-images mr-3"></i> Photo Gallery
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('technical-updates');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-sync-alt mr-3"></i> Technical Updates
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('quick-dashboard');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-tachometer-alt mr-3"></i> Quick Dashboard
+            </a>
+          </div>
+        </div>
+
+        <!-- About Us Mobile -->
+        <div class="border-b border-gray-100 pb-2">
+          <button
+            class="w-full text-left py-3 text-gray-700 font-medium flex items-center justify-between"
+            onclick="toggleMobileSubmenu('about-mobile')"
+          >
+            <span><i class="fas fa-info-circle mr-3"></i> About Us</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="about-mobile" class="hidden pl-8 space-y-2 mt-2">
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('organisation-hierarchy');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-sitemap mr-3"></i> Organisation Hierarchy
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('mission-vision');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-bullseye mr-3"></i> Mission/Vision
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('charter-duties');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-file-contract mr-3"></i> Charter of Duties
+            </a>
+            <a
+              href="#"
+              class="block py-2 text-gray-600 hover:text-navy-primary"
+              onclick="
+                event.preventDefault();
+                showContent('governing-policies');
+                toggleMobileMenu();
+              "
+            >
+              <i class="fas fa-gavel mr-3"></i> Governing Policies
+            </a>
+          </div>
+        </div>
+
+        <!-- Other Menu Items -->
+        <a
+          href="#"
+          class="block py-3 text-gray-700 font-medium border-b border-gray-100"
+          onclick="
+            event.preventDefault();
+            showContent('kms');
+            toggleMobileMenu();
+          "
+        >
+          <i class="fas fa-book mr-3"></i> KMS
+        </a>
+        <a
+          href="#"
+          class="block py-3 text-gray-700 font-medium border-b border-gray-100"
+          onclick="
+            event.preventDefault();
+            showContent('contact-us');
+            toggleMobileMenu();
+          "
+        >
+          <i class="fas fa-address-book mr-3"></i> Contact Us
+        </a>
+        <a
+          href="#"
+          class="block py-3 text-gray-700 font-medium"
+          onclick="
+            event.preventDefault();
+            showContent('help');
+            toggleMobileMenu();
+          "
+        >
+          <i class="fas fa-question-circle mr-3"></i> Help
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative navy-gradient text-white">
+      <div class="absolute inset-0 hero-overlay"></div>
+
+      <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+        <div class="max-w-3xl">
+          <div
+            class="container mx-auto px-8 grid md:grid-cols-2 gap-10 items-center z-10"
+            style="width: 1500px; height: 350px"
+          >
+            <!-- LEFT TEXT -->
+            <div>
+              <h1 class="text-5xl font-bold mb-6">
+                <span class="text-yellow-400">Serving</span> the Nation with
+                Pride & Honor
+              </h1>
+
+              <p class="text-lg opacity-90 mb-8">
+                The Indian Navy is the naval branch of the Indian Armed Forces.
+                The President of India is the Supreme Commander of the Indian
+                Navy.
+              </p>
+
+              <div class="flex gap-4">
+                <button
+                  class="bg-yellow-400 text-blue-900 font-bold px-6 py-3 rounded-lg hover:bg-yellow-500 transition"
+                >
+                 <a href="dashboard.html"> Quick Dashboard</a>
+                </button>
+
+                <button
+                  class="border-2 border-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-900 transition"
+                >
+                  <a href="our-team.html">Our Team</a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0">
+        <div class="wave-wrapper">
+          <!-- Wave 1 -->
+          <div class="wave">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+              <path
+                fill="#38bdf8"
+                d="M0,192L40,176C80,160,160,128,240,122.7C320,117,400,139,480,170.7C560,203,640,245,720,240C800,235,880,181,960,160C1040,139,1120,149,1200,165.3C1280,181,1360,203,1400,213.3L1440,224V320H0Z"
+              ></path>
+            </svg>
+          </div>
+
+          <!-- Wave 2 -->
+          <div class="wave">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+              <path
+                fill="#0ea5e9"
+                d="M0,224L60,213.3C120,203,240,181,360,165.3C480,149,600,139,720,154.7C840,171,960,213,1080,218.7C1200,224,1320,192,1380,176L1440,160V320H0Z"
+              ></path>
+            </svg>
+          </div>
+
+          <!-- Wave 3 -->
+          <div class="wave">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+              <path
+                fill="#0284c7"
+                d="M0,160L80,181.3C160,203,320,245,480,245.3C640,245,800,203,960,176C1120,149,1280,139,1360,133.3L1440,128V320H0Z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-8">
+      <!-- Dynamic Content Display -->
+      <div id="content-display" class="min-h-[500px]">
+        <!-- Default Content (Unit at Glance) -->
+        <div id="unit-glance" class="content-section">
+          <div class="mb-8">
+            <h2 class="text-3xl font-heading font-bold text-navy-primary mb-4">
+              Unit at Glance
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div class="bg-white rounded-xl shadow-lg p-6">
+                <div
+                  class="w-16 h-16 rounded-full bg-navy-light flex items-center justify-center mb-4"
+                >
+                  <i class="fas fa-ship text-navy-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-navy-dark mb-3">
+                  Fleet Strength
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  The Indian Navy operates a diverse fleet including aircraft
+                  carriers, destroyers, frigates, corvettes, and submarines.
+                </p>
+                <div class="text-navy-primary font-bold">150+ Active Ships</div>
+              </div>
+              <div class="bg-white rounded-xl shadow-lg p-6">
+                <div
+                  class="w-16 h-16 rounded-full bg-navy-light flex items-center justify-center mb-4"
+                >
+                  <i class="fas fa-user-shield text-navy-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-navy-dark mb-3">Personnel</h3>
+                <p class="text-gray-600 mb-4">
+                  Highly trained officers and sailors dedicated to maritime
+                  security and national defense.
+                </p>
+                <div class="text-navy-primary font-bold">
+                  67,000+ Active Personnel
+                </div>
+              </div>
+              <div class="bg-white rounded-xl shadow-lg p-6">
+                <div
+                  class="w-16 h-16 rounded-full bg-navy-light flex items-center justify-center mb-4"
+                >
+                  <i
+                    class="fas fa-map-marked-alt text-navy-primary text-2xl"
+                  ></i>
+                </div>
+                <h3 class="text-xl font-bold text-navy-dark mb-3">
+                  Operational Areas
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  Protecting India's 7,516 km coastline and exclusive economic
+                  zone of 2.3 million square kilometers.
+                </p>
+                <div class="text-navy-primary font-bold">3 Naval Commands</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Gallery Content -->
+        <div id="photo-gallery" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Photo Gallery
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img
+                src="https://picsum.photos/400/300?random=1"
+                alt="Indian Navy ship at sea"
+                class="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div class="p-4">
+                <h3 class="font-bold text-navy-dark mb-2">INS Vikramaditya</h3>
+                <p class="text-gray-600 text-sm">
+                  Aircraft carrier during naval exercises
+                </p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img
+                src="https://picsum.photos/400/300?random=2"
+                alt="Naval personnel in formation"
+                class="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div class="p-4">
+                <h3 class="font-bold text-navy-dark mb-2">Ceremonial Guard</h3>
+                <p class="text-gray-600 text-sm">
+                  Naval personnel during Republic Day parade
+                </p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img
+                src="https://picsum.photos/400/300?random=3"
+                alt="Submarine operations"
+                class="w-full h-48 object-cover"
+                loading="lazy"
+              />
+              <div class="p-4">
+                <h3 class="font-bold text-navy-dark mb-2">Submarine Fleet</h3>
+                <p class="text-gray-600 text-sm">
+                  INS Arihant during strategic patrol
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical Updates Content -->
+        <div id="technical-updates" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Technical Updates
+          </h2>
+          <div class="space-y-6">
+            <div class="bg-white rounded-lg shadow-md p-6">
+              <div class="flex items-start justify-between mb-4">
+                <h3 class="text-xl font-bold text-navy-dark">
+                  New Radar System Installation
+                </h3>
+                <span
+                  class="bg-navy-primary text-white text-xs px-3 py-1 rounded-full"
+                  >Latest</span
+                >
+              </div>
+              <p class="text-gray-600 mb-4">
+                Advanced radar systems have been installed across the fleet for
+                enhanced surveillance capabilities.
+              </p>
+              <div class="text-sm text-gray-500">Updated: 15 Dec 2024</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-6">
+              <h3 class="text-xl font-bold text-navy-dark mb-4">
+                Cybersecurity Protocol Update
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Enhanced cybersecurity measures implemented across all naval
+                networks and communication systems.
+              </p>
+              <div class="text-sm text-gray-500">Updated: 10 Dec 2024</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Dashboard Content -->
+        <div id="quick-dashboard" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Quick Dashboard
+          </h2>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+          >
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+              <div class="text-4xl font-bold text-navy-primary mb-2">150+</div>
+              <div class="text-gray-600">Active Ships</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+              <div class="text-4xl font-bold text-navy-primary mb-2">67K+</div>
+              <div class="text-gray-600">Personnel</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+              <div class="text-4xl font-bold text-navy-primary mb-2">24/7</div>
+              <div class="text-gray-600">Operational Readiness</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center">
+              <div class="text-4xl font-bold text-navy-primary mb-2">100%</div>
+              <div class="text-gray-600">Mission Success Rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Organisation Hierarchy Content -->
+        <div id="organisation-hierarchy" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Organisation Hierarchy
+          </h2>
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="space-y-6">
+              <div class="border-l-4 border-navy-primary pl-4">
+                <h3 class="text-xl font-bold text-navy-dark mb-2">
+                  Chief of Naval Staff
+                </h3>
+                <p class="text-gray-600">
+                  The professional head of the Indian Navy
+                </p>
+              </div>
+              <div class="border-l-4 border-navy-secondary pl-4 ml-4">
+                <h3 class="text-xl font-bold text-navy-dark mb-2">
+                  Vice Chief of Naval Staff
+                </h3>
+                <p class="text-gray-600">Deputy to the Chief of Naval Staff</p>
+              </div>
+              <div class="border-l-4 border-navy-secondary pl-4 ml-8">
+                <h3 class="text-lg font-bold text-navy-dark mb-2">
+                  Principal Staff Officers
+                </h3>
+                <p class="text-gray-600">
+                  Heads of various directorates and departments
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission/Vision Content -->
+        <div id="mission-vision" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Mission & Vision
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <div
+                class="w-12 h-12 rounded-full bg-navy-light flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-bullseye text-navy-primary text-xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-navy-dark mb-4">Mission</h3>
+              <p class="text-gray-600">
+                To protect India's maritime interests and uphold maritime order
+                in consonance with international laws. To safeguard our
+                coastline, islands, and offshore assets against any threats.
+              </p>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <div
+                class="w-12 h-12 rounded-full bg-navy-light flex items-center justify-center mb-4"
+              >
+                <i class="fas fa-eye text-navy-primary text-xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-navy-dark mb-4">Vision</h3>
+              <p class="text-gray-600">
+                To be a combat-ready, credible, cohesive, and future-proof force
+                that protects our national interests in the maritime domain and
+                promotes peace and stability in the region.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charter of Duties Content -->
+        <div id="charter-duties" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Charter of Duties
+          </h2>
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span class="text-gray-700"
+                  >Protect India's maritime borders and coastal regions</span
+                >
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span class="text-gray-700"
+                  >Ensure safe passage for merchant shipping</span
+                >
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span class="text-gray-700"
+                  >Conduct search and rescue operations</span
+                >
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                <span class="text-gray-700"
+                  >Provide humanitarian assistance and disaster relief</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Governing Policies Content -->
+        <div id="governing-policies" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Governing Policies
+          </h2>
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="space-y-4">
+              <div class="border-b border-gray-100 pb-4">
+                <h3 class="text-lg font-bold text-navy-dark mb-2">
+                  Naval Strategic Publication 1.2
+                </h3>
+                <p class="text-gray-600">
+                  Guidelines for maritime security operations and force
+                  deployment
+                </p>
+              </div>
+              <div class="border-b border-gray-100 pb-4">
+                <h3 class="text-lg font-bold text-navy-dark mb-2">
+                  Personnel Management Policy
+                </h3>
+                <p class="text-gray-600">
+                  Regulations governing recruitment, training, and career
+                  progression
+                </p>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-navy-dark mb-2">
+                  Operational Readiness Directive
+                </h3>
+                <p class="text-gray-600">
+                  Standards for maintaining combat readiness and equipment
+                  maintenance
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KMS Content -->
+        <div id="kms" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Knowledge Management System (KMS)
+          </h2>
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="mb-6">
+              <h3 class="text-xl font-bold text-navy-dark mb-4">
+                Access Naval Knowledge Resources
+              </h3>
+              <p class="text-gray-600 mb-6">
+                The Knowledge Management System provides centralized access to
+                naval procedures, technical manuals, and operational guidelines.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div
+                  class="border border-gray-200 rounded-lg p-4 hover:border-navy-primary transition-colors"
+                >
+                  <div class="flex items-center mb-3">
+                    <div
+                      class="w-10 h-10 rounded-full bg-navy-light flex items-center justify-center mr-3"
+                    >
+                      <i class="fas fa-book text-navy-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-dark">Technical Manuals</h4>
+                  </div>
+                  <p class="text-gray-600 text-sm">
+                    Access comprehensive technical documentation for naval
+                    equipment and systems.
+                  </p>
+                </div>
+                <div
+                  class="border border-gray-200 rounded-lg p-4 hover:border-navy-primary transition-colors"
+                >
+                  <div class="flex items-center mb-3">
+                    <div
+                      class="w-10 h-10 rounded-full bg-navy-light flex items-center justify-center mr-3"
+                    >
+                      <i class="fas fa-file-alt text-navy-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-dark">
+                      Operational Procedures
+                    </h4>
+                  </div>
+                  <p class="text-gray-600 text-sm">
+                    Standard operating procedures for various naval operations
+                    and missions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Us Content -->
+        <div id="contact-us" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Contact Us
+          </h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <h3 class="text-xl font-bold text-navy-dark mb-4">
+                Headquarters Information
+              </h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <i
+                    class="fas fa-map-marker-alt text-navy-primary mt-1 mr-3"
+                  ></i>
+                  <div>
+                    <h4 class="font-bold text-gray-800">Address</h4>
+                    <p class="text-gray-600">
+                      Integrated Headquarters of Ministry of Defence (Navy)<br />South
+                      Block, New Delhi - 110011
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-phone text-navy-primary mt-1 mr-3"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-800">Contact Numbers</h4>
+                    <p class="text-gray-600">
+                      General Inquiries: +91-11-2301-XXXX<br />Emergency:
+                      011-2301-XXXX
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <h3 class="text-xl font-bold text-navy-dark mb-4">
+                Send a Message
+              </h3>
+              <form id="contact-form" class="space-y-4">
+                <div>
+                  <label class="block text-gray-700 mb-2" for="name"
+                    >Full Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-navy-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label class="block text-gray-700 mb-2" for="email"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-navy-primary"
+                    required
+                  />
+                </div>
+                <div>
+                  <label class="block text-gray-700 mb-2" for="message"
+                    >Message</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="4"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-navy-primary"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="bg-navy-primary text-white px-6 py-3 rounded-lg hover:bg-navy-secondary transition-colors"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Help Content -->
+        <div id="help" class="content-section hidden">
+          <h2 class="text-3xl font-heading font-bold text-navy-primary mb-6">
+            Help & Support
+          </h2>
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="mb-8">
+              <h3 class="text-xl font-bold text-navy-dark mb-4">
+                Frequently Asked Questions
+              </h3>
+              <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg p-4">
+                  <h4 class="font-bold text-gray-800 mb-2">
+                    How do I access KMS resources?
+                  </h4>
+                  <p class="text-gray-600">
+                    KMS resources are available to authorized personnel through
+                    the internal naval network. Contact your unit's IT
+                    department for access credentials.
+                  </p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                  <h4 class="font-bold text-gray-800 mb-2">
+                    Where can I find technical manuals?
+                  </h4>
+                  <p class="text-gray-600">
+                    Technical manuals are available in the KMS section under
+                    "Technical Documentation". You need appropriate clearance
+                    levels to access specific documents.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-navy-dark mb-4">
+                Technical Support
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border border-gray-200 rounded-lg p-4">
+                  <div class="flex items-center mb-3">
+                    <div
+                      class="w-10 h-10 rounded-full bg-navy-light flex items-center justify-center mr-3"
+                    >
+                      <i class="fas fa-headset text-navy-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-800">IT Help Desk</h4>
+                      <p class="text-gray-600 text-sm">
+                        For technical issues and system access
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">
+                    Email: helpdesk@indiannavy.mil.in<br />Phone: Ext. 5555
+                  </p>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                  <div class="flex items-center mb-3">
+                    <div
+                      class="w-10 h-10 rounded-full bg-navy-light flex items-center justify-center mr-3"
+                    >
+                      <i class="fas fa-question-circle text-navy-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-800">General Support</h4>
+                      <p class="text-gray-600 text-sm">
+                        For general inquiries and information
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">
+                    Email: support@indiannavy.mil.in<br />Phone: Ext. 4444
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-dark text-white mt-12">
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-heading font-bold mb-4">Indian Navy</h3>
+            <p class="text-gray-300 text-sm">
+              Protecting our maritime borders and national interests with
+              unwavering commitment and professionalism.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-navy-accent transition-colors text-sm"
+                  onclick="
+                    event.preventDefault();
+                    showContent('unit-glance');
+                  "
+                  >Unit at Glance</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-navy-accent transition-colors text-sm"
+                  onclick="
+                    event.preventDefault();
+                    showContent('photo-gallery');
+                  "
+                  >Photo Gallery</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-navy-accent transition-colors text-sm"
+                  onclick="
+                    event.preventDefault();
+                    showContent('technical-updates');
+                  "
+                  >Technical Updates</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Resources</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-navy-accent transition-colors text-sm"
+                  onclick="
+                    event.preventDefault();
+                    showContent('kms');
+                  "
+                  >KMS Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-navy-accent transition-colors text-sm"
+                  onclick="
+                    event.preventDefault();
+                    showContent('help');
+                  "
+                  >Help Desk</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-300 hover:text-navy-accent transition-colors text-sm"
+                  onclick="
+                    event.preventDefault();
+                    showContent('contact-us');
+                  "
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Connect With Us</h4>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-navy-primary flex items-center justify-center hover:bg-navy-accent transition-colors"
+                onclick="
+                  event.preventDefault();
+                  alert('Facebook page');
+                "
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-navy-primary flex items-center justify-center hover:bg-navy-accent transition-colors"
+                onclick="
+                  event.preventDefault();
+                  alert('Twitter account');
+                "
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-navy-primary flex items-center justify-center hover:bg-navy-accent transition-colors"
+                onclick="
+                  event.preventDefault();
+                  alert('YouTube channel');
+                "
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm"
+        >
+          <p>
+            &copy; 2024 Indian Navy. All rights reserved. | This is an official
+            website of the Indian Navy
+          </p>
+          <p class="mt-2">
+            For official use only. Unauthorized access prohibited.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Define navigation structure
+      const navigationData = {
+        mainMenu: [
+          {
+            id: "home",
+            label: "Home",
+            icon: "fa-home",
+            submenu: [
+              { id: "unit-glance", label: "Unit at Glance", icon: "fa-eye" },
+              {
+                id: "photo-gallery",
+                label: "Photo Gallery",
+                icon: "fa-images",
+              },
+              {
+                id: "technical-updates",
+                label: "Technical Updates",
+                icon: "fa-sync-alt",
+              },
+              {
+                id: "quick-dashboard",
+                label: "Quick Dashboard",
+                icon: "fa-tachometer-alt",
+              },
+            ],
+          },
+          {
+            id: "about-us",
+            label: "About Us",
+            icon: "fa-info-circle",
+            submenu: [
+              {
+                id: "organisation-hierarchy",
+                label: "Organisation Hierarchy",
+                icon: "fa-sitemap",
+              },
+              {
+                id: "mission-vision",
+                label: "Mission/Vision",
+                icon: "fa-bullseye",
+              },
+              {
+                id: "charter-duties",
+                label: "Charter of Duties",
+                icon: "fa-file-contract",
+              },
+              {
+                id: "governing-policies",
+                label: "Governing Policies",
+                icon: "fa-gavel",
+              },
+            ],
+          },
+          {
+            id: "kms",
+            label: "KMS",
+            icon: "fa-book",
+            submenu: [],
+          },
+          {
+            id: "contact-us",
+            label: "Contact Us",
+            icon: "fa-address-book",
+            submenu: [],
+          },
+          {
+            id: "help",
+            label: "Help",
+            icon: "fa-question-circle",
+            submenu: [],
+          },
+        ],
+      };
+
+      // Mobile menu functionality
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      function toggleMobileMenu() {
+        mobileMenu.classList.toggle("hidden");
+      }
+
+      function toggleMobileSubmenu(id) {
+        const submenu = document.getElementById(id);
+        submenu.classList.toggle("hidden");
+      }
+
+      mobileMenuButton.addEventListener("click", toggleMobileMenu);
+
+      // Content display functionality
+      function showContent(contentId) {
+        // Hide all content sections
+        const contentSections = document.querySelectorAll(".content-section");
+        contentSections.forEach((section) => {
+          section.classList.add("hidden");
+        });
+
+        // Show selected content
+        const selectedContent = document.getElementById(contentId);
+        if (selectedContent) {
+          selectedContent.classList.remove("hidden");
+        }
+
+        // Close mobile menu if open
+        if (!mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+        }
+
+        // Update active state in navigation (optional enhancement)
+        updateActiveNav(contentId);
+      }
+
+      function updateActiveNav(contentId) {
+        // Remove active class from all nav items
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("text-navy-primary", "font-bold");
+          link.classList.add("text-gray-700");
+        });
+
+        // Add active class to current nav item
+        const activeLink = document.querySelector(`[onclick*="${contentId}"]`);
+        if (activeLink) {
+          activeLink.classList.remove("text-gray-700");
+          activeLink.classList.add("text-navy-primary", "font-bold");
+        }
+      }
+
+      // Form submission handling
+      document
+        .getElementById("contact-form")
+        ?.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+
+          if (name && email && message) {
+            alert("Thank you for your message. We will get back to you soon.");
+            this.reset();
+          } else {
+            alert("Please fill in all required fields.");
+          }
+        });
+
+      // Initialize with default content
+      document.addEventListener("DOMContentLoaded", function () {
+        showContent("unit-glance");
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId !== "#") {
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }
+            }
+          });
+        });
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener("click", function (event) {
+        if (!event.target.closest(".dropdown")) {
+          document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+            menu.classList.add("hidden");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | ITTTM</title>
+    <meta name="description" content="Learn about the Integrated Trial Testing and Tuning Module - DTTT Mumbai" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                primary: "#000080",
+                secondary: "#003366",
+                accent: "#FFD700",
+                light: "#E6E6FA",
+                dark: "#000033",
+              },
+            },
+            fontFamily: {
+              sans: ["Roboto", "Arial", "sans-serif"],
+              heading: ["Montserrat", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Teko:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Navbar Styles */
+        .navy-gradient {
+            background: linear-gradient(135deg, #000033 0%, #000080 50%, #003366 100%);
+        }
+        .navy-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000033' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Login Button */
+        .login-btn {
+            background: linear-gradient(135deg, #000080, #003366);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 128, 0.4);
+        }
+        .login-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+        .login-btn:hover::before {
+            left: 125%;
+        }
+        .login-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 128, 0.6);
+        }
+        
+        /* Banner Pill */
+        .banner-pill {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 6px 22px;
+            border-radius: 40px;
+            border: 1.5px solid #ffd700;
+            background-color: rgba(255, 215, 0, 0.04);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: borderPulse 3s ease-in-out infinite;
+        }
+        @keyframes borderPulse {
+            0% { box-shadow: 0 0 0px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
+            100% { box-shadow: 0 0 0px rgba(255, 215, 0, 0.2); }
+        }
+        .banner-pill::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -60%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-20deg);
+            animation: sweep 4s infinite;
+        }
+        @keyframes sweep {
+            0% { left: -60%; }
+            100% { left: 120%; }
+        }
+        .banner-pill:hover {
+            transform: translateY(-2px);
+            background-color: rgba(255, 215, 0, 0.08);
+        }
+        .banner-main {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .banner-sub {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffd700;
+        }
+        .divider {
+            width: 1px;
+            height: 16px;
+            background-color: rgba(255, 215, 0, 0.6);
+        }
+
+        /* About Section Styles */
+        body {
+            background: linear-gradient(135deg, #001845 0%, #003566 50%, #0353a4 100%);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 24, 69, 0.9), rgba(0, 53, 102, 0.85)), 
+                        url('https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=1600&h=900&fit=crop') center/cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            padding: 120px 20px 60px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #a9d6e5;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 215, 0, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Mission Vision Values Section */
+        .mvv-section {
+            max-width: 1400px;
+            margin: -80px auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .mvv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .mvv-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: cardFadeIn 0.8s ease-out backwards;
+        }
+
+        .mvv-card:nth-child(1) { animation-delay: 0.1s; }
+        .mvv-card:nth-child(2) { animation-delay: 0.2s; }
+        .mvv-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mvv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #FFD700, #000080);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .mvv-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mvv-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 0, 128, 0.4);
+        }
+
+        .mvv-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #000080, #003366);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+
+        .mvv-card:hover .mvv-icon {
+            transform: rotate(360deg) scale(1.1);
+            background: linear-gradient(135deg, #FFD700, #ffa500);
+        }
+
+        .mvv-icon i {
+            font-size: 36px;
+            color: white;
+        }
+
+        .mvv-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #000080;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .mvv-text {
+            color: #2c3e50;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #FFD700, #000080);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            animation: timelineFadeIn 0.8s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes timelineFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 0 30px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(0, 0, 128, 0.4);
+        }
+
+        .timeline-year {
+            font-family: 'Teko', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #000080;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .timeline-text {
+            color: #546e7a;
+            line-height: 1.6;
+        }
+
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            background: #FFD700;
+            border: 4px solid #000080;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(255, 215, 0, 0);
+            }
+        }
+
+        /* Stats Counter Section */
+        .stats-section {
+            background: rgba(0, 0, 128, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            margin: 80px 0;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #FFD700;
+        }
+
+        .stat-number {
+            font-family: 'Teko', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #FFD700;
+            margin-bottom: 10px;
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Team Gallery */
+        .gallery-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            animation: galleryFadeIn 0.8s ease-out backwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes galleryFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 24, 69, 0.95), transparent);
+            padding: 30px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 24px;
+            color: #FFD700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .gallery-desc {
+            color: white;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                margin-left: 60px;
+                margin-right: 0;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .mvv-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans">
+    <!-- Header with Navigation -->
+    <header class="sticky top-0 z-50 shadow-lg">
+      <!-- Top Banner -->
+      <div class="bg-navy-primary text-white py-3 px-4">
+        <div class="container mx-auto flex justify-center">
+          <div class="banner-pill">
+            <span class="banner-main">
+              Integrated Trial Testing and Tuning Module
+            </span>
+            <span class="divider"></span>
+            <span class="banner-sub">
+              DTTT MUMBAI
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Navigation -->
+      <nav class="bg-white">
+        <div class="container mx-auto px-4">
+          <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-navy-primary flex items-center justify-center">
+                  <i class="fas fa-anchor text-white text-xl"></i>
+                </div>
+                <div>
+                  <h1 class="text-xl font-heading font-bold text-navy-primary"><a href="home-three.html">ITTTM</a></h1>
+                </div>
+              </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-6 w-full justify-center">
+              <!-- Home with Dropdown -->
+              <div class="relative dropdown">
+                <button class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
+                  <i class="fas fa-home mr-2"></i><a href="home-three.html"> Home</a>
+                  <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div class="dropdown-menu absolute left-0 mt-2 w-64 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200">
+                  <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
+                    <i class="fas fa-eye mr-3 text-navy-primary"></i>
+                    Unit at Glance
+                  </a>
+                  <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
+                    <i class="fas fa-images mr-3 text-navy-primary"></i>
+                    Photo Gallery
+                  </a>
+                  <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
+                    <i class="fas fa-sync-alt mr-3 text-navy-primary"></i>
+                    Technical Updates
+                  </a>
+                  <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
+                    <i class="fas fa-tachometer-alt mr-3 text-navy-primary"></i>
+                    Quick Dashboard
+                  </a>
+                </div>
+              </div>
+
+              <!-- About Us with Dropdown -->
+              <div class="relative">
+                <button class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
+                  <i class="fas fa-info-circle mr-2"></i> About Us
+                  <!-- <i class="fas fa-chevron-down ml-2 text-xs"></i> -->
+                </button>
+                <!-- <div class="dropdown-menu absolute left-0 mt-2 w-72 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200">
+                  <a href="#mission" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
+                    <i class="fas fa-sitemap mr-3 text-navy-primary"></i>
+                    Organisation Hierarchy
+                  </a>
+                  <a href="#mission" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
+                    <i class="fas fa-bullseye mr-3 text-navy-primary"></i>
+                    Mission/Vision
+                  </a>
+                  <a href="#timeline" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
+                    <i class="fas fa-file-contract mr-3 text-navy-primary"></i>
+                    Charter of Duties
+                  </a>
+                  <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
+                    <i class="fas fa-gavel mr-3 text-navy-primary"></i>
+                    Governing Policies
+                  </a>
+                </div> -->
+              </div>
+
+              <!-- KMS -->
+              <a href="#" class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
+                <i class="fas fa-book mr-2"></i> KMS
+              </a>
+
+              <!-- Contact Us -->
+              <a href="contactus.html" class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
+                <i class="fas fa-address-book mr-2"></i> Contact Us
+              </a>
+
+              <!-- Help -->
+              <a href="#" class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
+                <i class="fas fa-question-circle mr-2"></i> Help
+              </a>
+
+              <!-- Login Button -->
+              <div class="hidden lg:flex items-center absolute right-6">
+                <a href="login.html" class="login-btn relative ml-4 px-6 py-2 font-semibold text-white rounded-full overflow-hidden">
+                  <span class="relative z-10 flex items-center">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    Login
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden text-navy-primary p-2">
+              <i class="fas fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden bg-white shadow-lg">
+      <div class="px-4 py-3 space-y-1">
+        <!-- Home Mobile -->
+        <div class="border-b border-gray-100 pb-2">
+          <button class="w-full text-left py-3 text-gray-700 font-medium flex items-center justify-between" onclick="toggleMobileSubmenu('home-mobile')">
+            <span><i class="fas fa-home mr-3"></i> Home</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="home-mobile" class="hidden pl-8 space-y-2 mt-2">
+            <a href="#" class="block py-2 text-gray-600 hover:text-navy-primary">
+              <i class="fas fa-eye mr-3"></i> Unit at Glance
+            </a>
+            <a href="#" class="block py-2 text-gray-600 hover:text-navy-primary">
+              <i class="fas fa-images mr-3"></i> Photo Gallery
+            </a>
+            <a href="#" class="block py-2 text-gray-600 hover:text-navy-primary">
+              <i class="fas fa-sync-alt mr-3"></i> Technical Updates
+            </a>
+            <a href="#" class="block py-2 text-gray-600 hover:text-navy-primary">
+              <i class="fas fa-tachometer-alt mr-3"></i> Quick Dashboard
+            </a>
+          </div>
+        </div>
+
+        <!-- About Us Mobile -->
+        <div class="border-b border-gray-100 pb-2">
+          <button class="w-full text-left py-3 text-gray-700 font-medium flex items-center justify-between" onclick="toggleMobileSubmenu('about-mobile')">
+            <span><i class="fas fa-info-circle mr-3"></i> About Us</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div id="about-mobile" class="hidden pl-8 space-y-2 mt-2">
+            <a href="#mission" class="block py-2 text-gray-600 hover:text-navy-primary">
+              <i class="fas fa-sitemap mr-3"></i> Organisation Hierarchy
+            </a>
+            <a href="#mission" class="block py-2 text-gray-600 hover:text-navy-primary">
+              <i class="fas fa-bullseye mr-3"></i> Mission/Vision
+            </a>
+            <a href="#timeline" class="block py-2 text-gray-600 hover:text-navy-primary">
+              <i class="fas fa-file-contract mr-3"></i> Charter of Duties
+            </a>
+            <a href="#" class="block py-2 text-gray-600 hover:text-navy-primary">
+              <i class="fas fa-gavel mr-3"></i> Governing Policies
+            </a>
+          </div>
+        </div>
+
+        <!-- Other Menu Items -->
+        <a href="#" class="block py-3 text-gray-700 font-medium border-b border-gray-100">
+          <i class="fas fa-book mr-3"></i> KMS
+        </a>
+        <a href="contactus.html" class="block py-3 text-gray-700 font-medium border-b border-gray-100">
+          <i class="fas fa-address-book mr-3"></i> Contact Us
+        </a>
+        <a href="#" class="block py-3 text-gray-700 font-medium">
+          <i class="fas fa-question-circle mr-3"></i> Help
+        </a>
+        <a href="login.html" class="block py-3 text-navy-primary font-bold">
+          <i class="fas fa-shield-alt mr-3"></i> Login
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="floating-particles">
+            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+            <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+            <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">About ITTTM</h1>
+            <p class="hero-subtitle">
+                The Integrated Trial Testing and Tuning Module stands at the forefront of India's naval innovation, 
+                ensuring excellence in maritime defense through rigorous testing and cutting-edge technology.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Vision Values Cards -->
+    <section id="mission" class="mvv-section">
+        <div class="mvv-grid">
+            <div class="mvv-card">
+                <div class="mvv-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3 class="mvv-title">Our Mission</h3>
+                <p class="mvv-text">
+                    To provide world-class integrated testing, trial, and tuning services for naval vessels, 
+                    ensuring operational readiness and technological superiority through rigorous quality 
+                    assurance and innovative testing methodologies that meet the highest standards of maritime excellence.
+                </p>
+            </div>
+
+            <div class="mvv-card">
+                <div class="mvv-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="mvv-title">Our Vision</h3>
+                <p class="mvv-text">
+                    To be recognized as the premier naval testing facility in the Indo-Pacific region, 
+                    pioneering advanced testing techniques and fostering self-reliance in defense technology 
+                    while maintaining unwavering commitment to national security and maritime sovereignty.
+                </p>
+            </div>
+
+            <div class="mvv-card">
+                <div class="mvv-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3 class="mvv-title">Our Values</h3>
+                <p class="mvv-text">
+                    Excellence in execution, integrity in operations, innovation in approach, and dedication 
+                    to national defense. We uphold the highest standards of professional ethics while fostering 
+                    a culture of continuous improvement and technological advancement.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Tests Conducted</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Naval Vessels</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Mission Success</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charter of Duties Section -->
+    <section id="charter" style="max-width: 1200px; margin: 80px auto; padding: 0 20px;">
+        <h2 style="font-family: 'Teko', sans-serif; font-size: 48px; font-weight: 700; text-align: center; color: white; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px;">Charter of Duties</h2>
+        
+        <div style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 50px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px;">
+                
+                <!-- Core Responsibilities -->
+                <div style="border-left: 4px solid #000080; padding-left: 25px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #000080, #003366); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                            <i class="fas fa-tasks" style="color: white; font-size: 20px;"></i>
+                        </div>
+                        <h3 style="font-family: 'Teko', sans-serif; font-size: 28px; color: #000080; margin: 0; text-transform: uppercase;">Core Responsibilities</h3>
+                    </div>
+                    <ul style="color: #2c3e50; line-height: 2; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Conduct comprehensive sea trials for all naval vessels</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Perform integrated testing of weapons systems and sensors</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Execute propulsion and power system validation</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Assess combat readiness and operational capabilities</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Validate navigation and communication systems</li>
+                    </ul>
+                </div>
+
+                <!-- Quality Assurance -->
+                <div style="border-left: 4px solid #FFD700; padding-left: 25px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FFD700, #ffa500); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                            <i class="fas fa-shield-alt" style="color: #000080; font-size: 20px;"></i>
+                        </div>
+                        <h3 style="font-family: 'Teko', sans-serif; font-size: 28px; color: #000080; margin: 0; text-transform: uppercase;">Quality Assurance</h3>
+                    </div>
+                    <ul style="color: #2c3e50; line-height: 2; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Ensure compliance with naval quality standards</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Implement rigorous testing protocols and procedures</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Maintain detailed documentation and test reports</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Conduct failure analysis and corrective actions</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Certify vessel readiness for operational deployment</li>
+                    </ul>
+                </div>
+
+                <!-- Technical Support -->
+                <div style="border-left: 4px solid #000080; padding-left: 25px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #000080, #003366); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                            <i class="fas fa-cogs" style="color: white; font-size: 20px;"></i>
+                        </div>
+                        <h3 style="font-family: 'Teko', sans-serif; font-size: 28px; color: #000080; margin: 0; text-transform: uppercase;">Technical Support</h3>
+                    </div>
+                    <ul style="color: #2c3e50; line-height: 2; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Provide technical expertise to naval personnel</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Conduct training programs for ship crews</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Offer troubleshooting and diagnostic services</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Recommend system improvements and upgrades</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Coordinate with shipyards and OEMs</li>
+                    </ul>
+                </div>
+
+                <!-- Innovation & Research -->
+                <div style="border-left: 4px solid #FFD700; padding-left: 25px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FFD700, #ffa500); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                            <i class="fas fa-lightbulb" style="color: #000080; font-size: 20px;"></i>
+                        </div>
+                        <h3 style="font-family: 'Teko', sans-serif; font-size: 28px; color: #000080; margin: 0; text-transform: uppercase;">Innovation & Research</h3>
+                    </div>
+                    <ul style="color: #2c3e50; line-height: 2; list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Develop advanced testing methodologies</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Research emerging naval technologies</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Implement AI and automation in testing processes</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Collaborate with defense R&D organizations</li>
+                        <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #FFD700; margin-right: 10px;"></i>Drive indigenization initiatives</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Governing Policies Section -->
+    <section id="policies" style="max-width: 1400px; margin: 80px auto; padding: 0 20px;">
+        <h2 style="font-family: 'Teko', sans-serif; font-size: 48px; font-weight: 700; text-align: center; color: white; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px;">Governing Policies</h2>
+        
+        <!-- Slider Container -->
+        <div style="position: relative; overflow: hidden;">
+            <!-- Slider Track -->
+            <div id="policySlider" style="display: flex; transition: transform 0.5s ease; gap: 25px;">
+                
+                <!-- Policy Card 1 -->
+                <div style="min-width: calc(33.333% - 17px); background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; flex-shrink: 0;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0, 0, 128, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.2)'">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #003366); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-shield-alt" style="color: white; font-size: 28px;"></i>
+                    </div>
+                    <h3 style="font-family: 'Teko', sans-serif; font-size: 24px; color: #000080; margin-bottom: 15px; text-transform: uppercase; font-weight: 700;">Safety & Security</h3>
+                    <p style="color: #2c3e50; line-height: 1.7; margin-bottom: 15px; font-size: 15px;">
+                        Strict adherence to naval safety regulations and security protocols in all testing operations.
+                    </p>
+                    <ul style="color: #546e7a; line-height: 1.8; font-size: 14px; list-style: none; padding: 0;">
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> ISO 9001:2015 Quality Management</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Defense Safety Standards Compliance</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Emergency Response Protocols</li>
+                    </ul>
+                </div>
+
+                <!-- Policy Card 2 -->
+                <div style="min-width: calc(33.333% - 17px); background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; flex-shrink: 0;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0, 0, 128, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.2)'">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFD700, #ffa500); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-leaf" style="color: #000080; font-size: 28px;"></i>
+                    </div>
+                    <h3 style="font-family: 'Teko', sans-serif; font-size: 24px; color: #000080; margin-bottom: 15px; text-transform: uppercase; font-weight: 700;">Environmental</h3>
+                    <p style="color: #2c3e50; line-height: 1.7; margin-bottom: 15px; font-size: 15px;">
+                        Commitment to environmental sustainability and marine ecosystem protection during operations.
+                    </p>
+                    <ul style="color: #546e7a; line-height: 1.8; font-size: 14px; list-style: none; padding: 0;">
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> ISO 14001 Environmental Management</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Marine Pollution Prevention</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Waste Management Protocols</li>
+                    </ul>
+                </div>
+
+                <!-- Policy Card 3 -->
+                <div style="min-width: calc(33.333% - 17px); background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; flex-shrink: 0;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0, 0, 128, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.2)'">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #003366); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-users" style="color: white; font-size: 28px;"></i>
+                    </div>
+                    <h3 style="font-family: 'Teko', sans-serif; font-size: 24px; color: #000080; margin-bottom: 15px; text-transform: uppercase; font-weight: 700;">Human Resources</h3>
+                    <p style="color: #2c3e50; line-height: 1.7; margin-bottom: 15px; font-size: 15px;">
+                        Professional development and welfare of all personnel ensuring operational excellence.
+                    </p>
+                    <ul style="color: #546e7a; line-height: 1.8; font-size: 14px; list-style: none; padding: 0;">
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Continuous Training Programs</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Career Development Pathways</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Health & Wellness Initiatives</li>
+                    </ul>
+                </div>
+
+                <!-- Policy Card 4 -->
+                <div style="min-width: calc(33.333% - 17px); background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; flex-shrink: 0;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0, 0, 128, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.2)'">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFD700, #ffa500); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-handshake" style="color: #000080; font-size: 28px;"></i>
+                    </div>
+                    <h3 style="font-family: 'Teko', sans-serif; font-size: 24px; color: #000080; margin-bottom: 15px; text-transform: uppercase; font-weight: 700;">Ethics & Integrity</h3>
+                    <p style="color: #2c3e50; line-height: 1.7; margin-bottom: 15px; font-size: 15px;">
+                        Upholding highest standards of professional ethics and transparency in all activities.
+                    </p>
+                    <ul style="color: #546e7a; line-height: 1.8; font-size: 14px; list-style: none; padding: 0;">
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Code of Conduct Compliance</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Anti-Corruption Measures</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Transparency in Operations</li>
+                    </ul>
+                </div>
+
+                <!-- Policy Card 5 -->
+                <div style="min-width: calc(33.333% - 17px); background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; flex-shrink: 0;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0, 0, 128, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.2)'">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #000080, #003366); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-database" style="color: white; font-size: 28px;"></i>
+                    </div>
+                    <h3 style="font-family: 'Teko', sans-serif; font-size: 24px; color: #000080; margin-bottom: 15px; text-transform: uppercase; font-weight: 700;">Data Management</h3>
+                    <p style="color: #2c3e50; line-height: 1.7; margin-bottom: 15px; font-size: 15px;">
+                        Secure handling and management of all test data and technical documentation.
+                    </p>
+                    <ul style="color: #546e7a; line-height: 1.8; font-size: 14px; list-style: none; padding: 0;">
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Data Privacy & Protection</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Cybersecurity Protocols</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Document Control Systems</li>
+                    </ul>
+                </div>
+
+                <!-- Policy Card 6 -->
+                <div style="min-width: calc(33.333% - 17px); background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.3s ease; flex-shrink: 0;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0, 0, 128, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.2)'">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFD700, #ffa500); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                        <i class="fas fa-flag" style="color: #000080; font-size: 28px;"></i>
+                    </div>
+                    <h3 style="font-family: 'Teko', sans-serif; font-size: 24px; color: #000080; margin-bottom: 15px; text-transform: uppercase; font-weight: 700;">Make in India</h3>
+                    <p style="color: #2c3e50; line-height: 1.7; margin-bottom: 15px; font-size: 15px;">
+                        Supporting indigenization and promoting domestic defense manufacturing capabilities.
+                    </p>
+                    <ul style="color: #546e7a; line-height: 1.8; font-size: 14px; list-style: none; padding: 0;">
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Indigenous Content Maximization</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> MSME Partnership Programs</li>
+                        <li style="padding: 5px 0; padding-left: 20px; position: relative;"><span style="position: absolute; left: 5px; color: #FFD700;">•</span> Technology Transfer Facilitation</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button id="prevBtn" onclick="slidePolicy(-1)" style="position: absolute; left: -50px; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: linear-gradient(135deg, #000080, #003366); border: none; border-radius: 50%; color: white; font-size: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(0, 0, 128, 0.3); transition: all 0.3s ease; z-index: 10;" onmouseover="this.style.background='linear-gradient(135deg, #FFD700, #ffa500)'; this.style.color='#000080'; this.style.transform='translateY(-50%) scale(1.1)'" onmouseout="this.style.background='linear-gradient(135deg, #000080, #003366)'; this.style.color='white'; this.style.transform='translateY(-50%) scale(1)'">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <button id="nextBtn" onclick="slidePolicy(1)" style="position: absolute; right: -50px; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background: linear-gradient(135deg, #000080, #003366); border: none; border-radius: 50%; color: white; font-size: 20px; cursor: pointer; box-shadow: 0 5px 15px rgba(0, 0, 128, 0.3); transition: all 0.3s ease; z-index: 10;" onmouseover="this.style.background='linear-gradient(135deg, #FFD700, #ffa500)'; this.style.color='#000080'; this.style.transform='translateY(-50%) scale(1.1)'" onmouseout="this.style.background='linear-gradient(135deg, #000080, #003366)'; this.style.color='white'; this.style.transform='translateY(-50%) scale(1)'">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Slider Indicators -->
+        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 30px;">
+            <span class="policy-indicator" onclick="goToSlide(0)" style="width: 12px; height: 12px; border-radius: 50%; background: #FFD700; cursor: pointer; transition: all 0.3s ease;"></span>
+            <span class="policy-indicator" onclick="goToSlide(1)" style="width: 12px; height: 12px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.3s ease;"></span>
+        </div>
+    </section>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 2; // 6 cards shown 3 at a time = 2 slides
+
+        function slidePolicy(direction) {
+            const slider = document.getElementById('policySlider');
+            const indicators = document.querySelectorAll('.policy-indicator');
+            
+            currentSlide += direction;
+            
+            // Loop around
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            
+            // Move slider
+            const translateX = -currentSlide * 100;
+            slider.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.style.background = '#FFD700';
+                    indicator.style.transform = 'scale(1.3)';
+                } else {
+                    indicator.style.background = 'rgba(255, 255, 255, 0.3)';
+                    indicator.style.transform = 'scale(1)';
+                }
+            });
+        }
+
+        function goToSlide(index) {
+            const slider = document.getElementById('policySlider');
+            const indicators = document.querySelectorAll('.policy-indicator');
+            
+            currentSlide = index;
+            
+            // Move slider
+            const translateX = -currentSlide * 100;
+            slider.style.transform = `translateX(${translateX}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, idx) => {
+                if (idx === currentSlide) {
+                    indicator.style.background = '#FFD700';
+                    indicator.style.transform = 'scale(1.3)';
+                } else {
+                    indicator.style.background = 'rgba(255, 255, 255, 0.3)';
+                    indicator.style.transform = 'scale(1)';
+                }
+            });
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            slidePolicy(1);
+        }, 5000);
+    </script>
+
+    <!-- Organization Hierarchy Section -->
+    <section id="hierarchy" style="max-width: 1200px; margin: 80px auto 100px; padding: 0 20px;">
+        <h2 style="font-family: 'Teko', sans-serif; font-size: 48px; font-weight: 700; text-align: center; color: white; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px;">Organization Hierarchy</h2>
+        
+        <div style="background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 50px 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+            
+            <!-- Level 1 - Director -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div style="display: inline-block; background: linear-gradient(135deg, #000080, #003366); padding: 25px 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 128, 0.3); position: relative;">
+                    <div style="position: absolute; top: -10px; right: -10px; width: 40px; height: 40px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);">
+                        <i class="fas fa-star" style="color: #000080; font-size: 18px;"></i>
+                    </div>
+                    <div style="color: white; font-family: 'Teko', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 5px;">DIRECTOR</div>
+                    <div style="color: #FFD700; font-size: 14px; letter-spacing: 1px;">Chief Executive Officer</div>
+                </div>
+                <div style="width: 4px; height: 40px; background: linear-gradient(180deg, #000080, transparent); margin: 0 auto;"></div>
+            </div>
+
+            <!-- Level 2 - Deputy Directors -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px;">
+                <div style="text-align: center;">
+                    <div style="background: rgba(0, 0, 128, 0.1); padding: 20px; border-radius: 12px; border: 2px solid #000080; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#FFD700'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#000080'; this.style.boxShadow='none'">
+                        <div style="width: 50px; height: 50px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-user-tie" style="color: #000080; font-size: 22px;"></i>
+                        </div>
+                        <div style="font-family: 'Teko', sans-serif; font-size: 22px; color: #000080; font-weight: 700; margin-bottom: 5px;">DEPUTY DIRECTOR</div>
+                        <div style="color: #546e7a; font-size: 13px;">Testing Operations</div>
+                    </div>
+                    <div style="width: 2px; height: 30px; background: linear-gradient(180deg, #000080, transparent); margin: 0 auto;"></div>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="background: rgba(0, 0, 128, 0.1); padding: 20px; border-radius: 12px; border: 2px solid #000080; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#FFD700'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#000080'; this.style.boxShadow='none'">
+                        <div style="width: 50px; height: 50px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-user-tie" style="color: #000080; font-size: 22px;"></i>
+                        </div>
+                        <div style="font-family: 'Teko', sans-serif; font-size: 22px; color: #000080; font-weight: 700; margin-bottom: 5px;">DEPUTY DIRECTOR</div>
+                        <div style="color: #546e7a; font-size: 13px;">Quality Assurance</div>
+                    </div>
+                    <div style="width: 2px; height: 30px; background: linear-gradient(180deg, #000080, transparent); margin: 0 auto;"></div>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="background: rgba(0, 0, 128, 0.1); padding: 20px; border-radius: 12px; border: 2px solid #000080; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='#FFD700'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#000080'; this.style.boxShadow='none'">
+                        <div style="width: 50px; height: 50px; background: #FFD700; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                            <i class="fas fa-user-tie" style="color: #000080; font-size: 22px;"></i>
+                        </div>
+                        <div style="font-family: 'Teko', sans-serif; font-size: 22px; color: #000080; font-weight: 700; margin-bottom: 5px;">DEPUTY DIRECTOR</div>
+                        <div style="color: #546e7a; font-size: 13px;">Administration</div>
+                    </div>
+                    <div style="width: 2px; height: 30px; background: linear-gradient(180deg, #000080, transparent); margin: 0 auto;"></div>
+                </div>
+            </div>
+
+            <!-- Level 3 - Department Heads -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+                <div style="background: white; padding: 18px; border-radius: 10px; border: 2px solid rgba(0, 0, 128, 0.2); text-align: center; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#FFD700'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.borderColor='rgba(0, 0, 128, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <i class="fas fa-ship" style="color: #000080; font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: 700; color: #000080; font-size: 15px; margin-bottom: 5px;">Sea Trials</div>
+                    <div style="font-size: 12px; color: #546e7a;">Department</div>
+                </div>
+
+                <div style="background: white; padding: 18px; border-radius: 10px; border: 2px solid rgba(0, 0, 128, 0.2); text-align: center; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#FFD700'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.borderColor='rgba(0, 0, 128, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <i class="fas fa-rocket" style="color: #000080; font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: 700; color: #000080; font-size: 15px; margin-bottom: 5px;">Weapons Systems</div>
+                    <div style="font-size: 12px; color: #546e7a;">Department</div>
+                </div>
+
+                <div style="background: white; padding: 18px; border-radius: 10px; border: 2px solid rgba(0, 0, 128, 0.2); text-align: center; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#FFD700'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.borderColor='rgba(0, 0, 128, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <i class="fas fa-broadcast-tower" style="color: #000080; font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: 700; color: #000080; font-size: 15px; margin-bottom: 5px;">Communication</div>
+                    <div style="font-size: 12px; color: #546e7a;">Department</div>
+                </div>
+
+                <div style="background: white; padding: 18px; border-radius: 10px; border: 2px solid rgba(0, 0, 128, 0.2); text-align: center; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#FFD700'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.borderColor='rgba(0, 0, 128, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <i class="fas fa-cog" style="color: #000080; font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: 700; color: #000080; font-size: 15px; margin-bottom: 5px;">Engineering</div>
+                    <div style="font-size: 12px; color: #546e7a;">Department</div>
+                </div>
+
+                <div style="background: white; padding: 18px; border-radius: 10px; border: 2px solid rgba(0, 0, 128, 0.2); text-align: center; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#FFD700'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.borderColor='rgba(0, 0, 128, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <i class="fas fa-clipboard-check" style="color: #000080; font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: 700; color: #000080; font-size: 15px; margin-bottom: 5px;">Quality Control</div>
+                    <div style="font-size: 12px; color: #546e7a;">Department</div>
+                </div>
+
+                <div style="background: white; padding: 18px; border-radius: 10px; border: 2px solid rgba(0, 0, 128, 0.2); text-align: center; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#FFD700'; this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 20px rgba(0, 0, 128, 0.15)'" onmouseout="this.style.borderColor='rgba(0, 0, 128, 0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <i class="fas fa-database" style="color: #000080; font-size: 24px; margin-bottom: 10px; display: block;"></i>
+                    <div style="font-weight: 700; color: #000080; font-size: 15px; margin-bottom: 5px;">Data Analytics</div>
+                    <div style="font-size: 12px; color: #546e7a;">Department</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <script>
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener("click", toggleMobileMenu);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Counter animation
+        const animateCounter = (element, target, duration) => {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+                }
+            }, 16);
+        };
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const hasPlus = text.includes('+');
+                        const hasPercent = text.includes('%');
+                        const number = parseInt(text.replace(/[^0-9]/g, ''));
+                        stat.textContent = '0' + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
+                        animateCounter(stat, number, 2000);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
