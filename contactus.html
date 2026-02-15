@@ -67,6 +67,111 @@
       .nav-link:hover::after {
         width: 100%;
       }
+              /* Navbar Styles */
+        .navy-gradient {
+            background: linear-gradient(135deg, #000033 0%, #000080 50%, #003366 100%);
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+                /* Banner Pill */
+        .banner-pill {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 6px 22px;
+            border-radius: 40px;
+            border: 1.5px solid #ffd700;
+            background-color: rgba(255, 215, 0, 0.04);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: borderPulse 3s ease-in-out infinite;
+        }
+        @keyframes borderPulse {
+            0% { box-shadow: 0 0 0px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
+            100% { box-shadow: 0 0 0px rgba(255, 215, 0, 0.2); }
+        }
+        .banner-pill::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -60%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-20deg);
+            animation: sweep 4s infinite;
+        }
+        @keyframes sweep {
+            0% { left: -60%; }
+            100% { left: 120%; }
+        }
+        .banner-pill:hover {
+            transform: translateY(-2px);
+            background-color: rgba(255, 215, 0, 0.08);
+        }
+        .banner-main {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .banner-sub {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffd700;
+        }
+        .divider {
+            width: 1px;
+            height: 16px;
+            background-color: rgba(255, 215, 0, 0.6);
+        }
+
+        
+        /* Login Button */
+        .login-btn {
+            background: linear-gradient(135deg, #000080, #003366);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 128, 0.4);
+        }
+        .login-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+        }
+        .login-btn:hover::before {
+            left: 125%;
+        }
+        .login-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 128, 0.6);
+        }
+        
+
 
 
     </style>
@@ -98,10 +203,17 @@
     <!-- Header with Navigation -->
     <header class="sticky top-0 z-50 shadow-lg">
       <!-- Top Banner -->
-      <div class="bg-navy-primary text-white py-2 px-4">
-        <div class="items-center" style="margin-left: 50%">
-          <i class="fas fa-anchor text-navy-accent mr-2"></i>
-          <span class="text-sm font-medium">हर काम देश के नाम</span>
+      <div class="bg-navy-primary text-white py-3 px-4">
+        <div class="container mx-auto flex justify-center">
+          <div class="banner-pill">
+            <span class="banner-main">
+              Integrated Trial Testing and Tuning Module
+            </span>
+            <span class="divider"></span>
+            <span class="banner-sub">
+              DTTT MUMBAI
+            </span>
+          </div>
         </div>
       </div>
 
@@ -112,74 +224,37 @@
             <!-- Logo -->
             <div class="flex items-center">
               <div class="flex items-center space-x-3">
-                <div
-                  class="w-10 h-10 rounded-full bg-navy-primary flex items-center justify-center"
-                >
-                 <a href="home-three.html"> <i class="fas fa-anchor text-white text-xl"></i></a>
+                <div class="w-10 h-10 rounded-full bg-navy-primary flex items-center justify-center">
+                  <i class="fas fa-anchor text-white text-xl"></i>
                 </div>
                 <div>
-                  <h1 class="text-xl font-heading font-bold text-navy-primary">
-                   <a href="home-three.html">ITTTM</a>
-                  </h1>
-                  <p class="text-xs text-gray-600">Bharatiya Nau Sena</p>
+                  <h1 class="text-xl font-heading font-bold text-navy-primary"><a href="home-three.html">ITTTM</a></h1>
                 </div>
               </div>
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden lg:flex items-center space-x-1">
+            <div class="hidden lg:flex items-center space-x-6 w-full justify-center">
               <!-- Home with Dropdown -->
               <div class="relative dropdown">
-                <button
-                  class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
-                >
-                  <i class="fas fa-home mr-2"></i><a href="home-three.html"> Home</a>
+                <button class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
+                  <i class="fas fa-home mr-2"></i><a href="home-three.html">Home</a>
                   <i class="fas fa-chevron-down ml-2 text-xs"></i>
                 </button>
-                <div
-                  class="dropdown-menu absolute left-0 mt-2 w-64 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200"
-                >
-                  <a
-                    href="#"
-                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
-                    onclick="
-                      event.preventDefault();
-                      showContent('unit-glance');
-                    "
-                  >
+                <div class="dropdown-menu absolute left-0 mt-2 w-64 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200">
+                  <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
                     <i class="fas fa-eye mr-3 text-navy-primary"></i>
                     Unit at Glance
                   </a>
-                  <a
-                    href="#"
-                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
-                    onclick="
-                      event.preventDefault();
-                      showContent('photo-gallery');
-                    "
-                  >
+                  <a href="gallery.html" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
                     <i class="fas fa-images mr-3 text-navy-primary"></i>
                     Photo Gallery
                   </a>
-                  <a
-                    href="#"
-                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
-                    onclick="
-                      event.preventDefault();
-                      showContent('technical-updates');
-                    "
-                  >
+                  <a href="#" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
                     <i class="fas fa-sync-alt mr-3 text-navy-primary"></i>
                     Technical Updates
                   </a>
-                  <a
-                    href="#"
-                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
-                    onclick="
-                      event.preventDefault();
-                      showContent('quick-dashboard');
-                    "
-                  >
+                  <a href="dashboard.html" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
                     <i class="fas fa-tachometer-alt mr-3 text-navy-primary"></i>
                     Quick Dashboard
                   </a>
@@ -188,96 +263,58 @@
 
               <!-- About Us with Dropdown -->
               <div class="relative dropdown">
-                <button
-                  class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
-                >
+                <button class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
                   <i class="fas fa-info-circle mr-2"></i> About Us
                   <i class="fas fa-chevron-down ml-2 text-xs"></i>
                 </button>
-                <div
-                  class="dropdown-menu absolute left-0 mt-2 w-72 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200"
-                >
-                  <a
-                    href="#"
-                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
-                    onclick="
-                      event.preventDefault();
-                      showContent('organisation-hierarchy');
-                    "
-                  >
+                <div class="dropdown-menu absolute left-0 mt-2 w-72 bg-white shadow-xl rounded-lg py-2 hidden z-10 border border-gray-200">
+                  <a href="about-us.html#hierarchy" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
                     <i class="fas fa-sitemap mr-3 text-navy-primary"></i>
                     Organisation Hierarchy
                   </a>
-                  <a
-                    href="#"
-                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
-                    onclick="
-                      event.preventDefault();
-                      showContent('mission-vision');
-                    "
-                  >
+                  <a href="about-us.html#mission" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
                     <i class="fas fa-bullseye mr-3 text-navy-primary"></i>
                     Mission/Vision
                   </a>
-                  <a
-                    href="#"
-                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
-                    onclick="
-                      event.preventDefault();
-                      showContent('charter-duties');
-                    "
-                  >
+                  <a href="about-us.html#charter" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
                     <i class="fas fa-file-contract mr-3 text-navy-primary"></i>
                     Charter of Duties
                   </a>
-                  <a
-                    href="#"
-                    class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors"
-                    onclick="
-                      event.preventDefault();
-                      showContent('governing-policies');
-                    "
-                  >
+                  <a href="about-us.html#policies" class="block px-4 py-3 text-gray-700 hover:bg-navy-light hover:text-navy-primary transition-colors">
                     <i class="fas fa-gavel mr-3 text-navy-primary"></i>
                     Governing Policies
                   </a>
                 </div>
               </div>
 
-              <!-- KMS (No Dropdown) -->
-              <a
-              href="kms.html"                
-                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
-              >
+              <!-- KMS -->
+              <a href="kms.html" class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
                 <i class="fas fa-book mr-2"></i> KMS
               </a>
 
-              <!-- Contact Us (No Dropdown) -->
-              <a
-                href="contactus.html"
-                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
-              >
+              <!-- Contact Us -->
+              <a href="contactus.html" class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
                 <i class="fas fa-address-book mr-2"></i> Contact Us
               </a>
 
-              <!-- Help (No Dropdown) -->
-              <a
-                href="#"
-                class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center"
-                onclick="
-                  event.preventDefault();
-                  showContent('help');
-                "
-              >
+              <!-- Help -->
+              <a href="#" class="nav-link px-4 py-2 text-gray-700 hover:text-navy-primary font-medium flex items-center">
                 <i class="fas fa-question-circle mr-2"></i> Help
               </a>
+
+              <!-- Login Button -->
+              <div class="hidden lg:flex items-center absolute right-6">
+                <a href="login.html" class="login-btn relative ml-4 px-6 py-2 font-semibold text-white rounded-full overflow-hidden">
+                  <span class="relative z-10 flex items-center">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    Login
+                  </span>
+                </a>
+              </div>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button
-              id="mobile-menu-button"
-              class="lg:hidden text-navy-primary p-2"
-            >
+            <button id="mobile-menu-button" class="lg:hidden text-navy-primary p-2">
               <i class="fas fa-bars text-xl"></i>
             </button>
           </div>
@@ -288,153 +325,23 @@
     <!-- Mobile Navigation Menu -->
     <div id="mobile-menu" class="lg:hidden hidden bg-white shadow-lg">
       <div class="px-4 py-3 space-y-1">
-        <!-- Home Mobile -->
-        <div class="border-b border-gray-100 pb-2">
-          <button
-            class="w-full text-left py-3 text-gray-700 font-medium flex items-center justify-between"
-            onclick="toggleMobileSubmenu('home-mobile')"
-          >
-            <span><i class="fas fa-home mr-3"></i> Home</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div id="home-mobile" class="hidden pl-8 space-y-2 mt-2">
-            <a
-              href="#"
-              class="block py-2 text-gray-600 hover:text-navy-primary"
-              onclick="
-                event.preventDefault();
-                showContent('unit-glance');
-                toggleMobileMenu();
-              "
-            >
-              <i class="fas fa-eye mr-3"></i> Unit at Glance
-            </a>
-            <a
-              href="#"
-              class="block py-2 text-gray-600 hover:text-navy-primary"
-              onclick="
-                event.preventDefault();
-                showContent('photo-gallery');
-                toggleMobileMenu();
-              "
-            >
-              <i class="fas fa-images mr-3"></i> Photo Gallery
-            </a>
-            <a
-              href="#"
-              class="block py-2 text-gray-600 hover:text-navy-primary"
-              onclick="
-                event.preventDefault();
-                showContent('technical-updates');
-                toggleMobileMenu();
-              "
-            >
-              <i class="fas fa-sync-alt mr-3"></i> Technical Updates
-            </a>
-            <a
-              href="#"
-              class="block py-2 text-gray-600 hover:text-navy-primary"
-              onclick="
-                event.preventDefault();
-                showContent('quick-dashboard');
-                toggleMobileMenu();
-              "
-            >
-              <i class="fas fa-tachometer-alt mr-3"></i> Quick Dashboard
-            </a>
-          </div>
-        </div>
-
-        <!-- About Us Mobile -->
-        <div class="border-b border-gray-100 pb-2">
-          <button
-            class="w-full text-left py-3 text-gray-700 font-medium flex items-center justify-between"
-            onclick="toggleMobileSubmenu('about-mobile')"
-          >
-            <span><i class="fas fa-info-circle mr-3"></i> About Us</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div id="about-mobile" class="hidden pl-8 space-y-2 mt-2">
-            <a
-              href="#"
-              class="block py-2 text-gray-600 hover:text-navy-primary"
-              onclick="
-                event.preventDefault();
-                showContent('organisation-hierarchy');
-                toggleMobileMenu();
-              "
-            >
-              <i class="fas fa-sitemap mr-3"></i> Organisation Hierarchy
-            </a>
-            <a
-              href="#"
-              class="block py-2 text-gray-600 hover:text-navy-primary"
-              onclick="
-                event.preventDefault();
-                showContent('mission-vision');
-                toggleMobileMenu();
-              "
-            >
-              <i class="fas fa-bullseye mr-3"></i> Mission/Vision
-            </a>
-            <a
-              href="#"
-              class="block py-2 text-gray-600 hover:text-navy-primary"
-              onclick="
-                event.preventDefault();
-                showContent('charter-duties');
-                toggleMobileMenu();
-              "
-            >
-              <i class="fas fa-file-contract mr-3"></i> Charter of Duties
-            </a>
-            <a
-              href="#"
-              class="block py-2 text-gray-600 hover:text-navy-primary"
-              onclick="
-                event.preventDefault();
-                showContent('governing-policies');
-                toggleMobileMenu();
-              "
-            >
-              <i class="fas fa-gavel mr-3"></i> Governing Policies
-            </a>
-          </div>
-        </div>
-
-        <!-- Other Menu Items -->
-        <a
-          href="#"
-          class="block py-3 text-gray-700 font-medium border-b border-gray-100"
-          onclick="
-            event.preventDefault();
-            showContent('kms');
-            toggleMobileMenu();
-          "
-        >
+        <a href="gallery.html" class="block py-3 text-gray-700 font-medium border-b border-gray-100">
+          <i class="fas fa-images mr-3"></i> Photo Gallery
+        </a>
+        <a href="dashboard.html" class="block py-3 text-gray-700 font-medium border-b border-gray-100">
+          <i class="fas fa-tachometer-alt mr-3"></i> Quick Dashboard
+        </a>
+        <a href="about-us.html" class="block py-3 text-gray-700 font-medium border-b border-gray-100">
+          <i class="fas fa-info-circle mr-3"></i> About Us
+        </a>
+        <a href="#" class="block py-3 text-gray-700 font-medium border-b border-gray-100">
           <i class="fas fa-book mr-3"></i> KMS
         </a>
-        <a
-          href="#"
-          class="block py-3 text-gray-700 font-medium border-b border-gray-100"
-          onclick="
-            event.preventDefault();
-            showContent('contact-us');
-            toggleMobileMenu();
-          "
-        >
+        <a href="contactus.html" class="block py-3 text-gray-700 font-medium border-b border-gray-100">
           <i class="fas fa-address-book mr-3"></i> Contact Us
         </a>
-        <a
-          href="#"
-          class="block py-3 text-gray-700 font-medium"
-          onclick="
-            event.preventDefault();
-            showContent('help');
-            toggleMobileMenu();
-          "
-        >
-          <i class="fas fa-question-circle mr-3"></i> Help
+        <a href="login.html" class="block py-3 text-navy-primary font-bold">
+          <i class="fas fa-shield-alt mr-3"></i> Login
         </a>
       </div>
     </div>
@@ -461,7 +368,7 @@
               <i class="fa-solid fa-anchor absolute -bottom-16 -right-16 text-white/5 text-[240px] pointer-events-none"></i>
               
               <h3 class="text-xs font-black gold-text uppercase tracking-[0.3em] mb-10 flex items-center gap-2">
-                <span class="w-8 h-px bg-yellow-400/30"></span> Global Directory
+                <span class="w-8 h-px bg-yellow-400/30"></span> <a href="home-three.html">ITTTM</a>
               </h3>
               
               <div class="space-y-10 relative z-10">
@@ -495,7 +402,7 @@
                     </div>
                     <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Official Email</span>
                   </div>
-                  <p class="text-xl font-bold tracking-tight pl-12 break-all">assistance@navy.gov.in</p>
+                  <p class="text-xl font-bold tracking-tight pl-12 break-all">itttm@nausena.mil</p>
                 </div>
               </div>
 

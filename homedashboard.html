@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ITTTM</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4f8;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+            color: white;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            box-shadow: 4px 0 20px rgba(30, 58, 138, 0.3);
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar-header {
+            padding: 30px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .logo-text a{
+            color: white;
+            text-decoration: none;
+        }
+        
+
+        .sidebar.collapsed .logo-text,
+        .sidebar.collapsed .menu-text,
+        .sidebar.collapsed .submenu-text,
+        .sidebar.collapsed .menu-arrow {
+            display: none;
+        }
+
+        .toggle-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(180deg);
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 4px 0;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item.active {
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid #60a5fa;
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-icon {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .menu-text {
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .menu-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item.open .menu-arrow {
+            transform: rotate(180deg);
+        }
+
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .submenu.open {
+            max-height: 300px;
+        }
+
+        .submenu-item {
+            padding: 14px 20px 14px 65px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .submenu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .submenu-item.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #60a5fa;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            transition: margin-left 0.4s ease;
+            min-height: 100vh;
+        }
+
+        .main-content.expanded {
+            margin-left: 80px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: white;
+            padding: 20px 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notification-btn {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            background: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-btn:hover {
+            background: #dbeafe;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ef4444;
+            border-radius: 50%;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .user-details {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 14px;
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 30px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(30, 58, 138, 0.15);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        .stat-change {
+            font-size: 13px;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .stat-change.positive {
+            color: #10b981;
+        }
+
+        /* Charts Section */
+        .charts-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .chart-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        /* Table Card */
+        .table-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .table-header {
+            padding: 24px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .filter-section {
+            padding: 20px 24px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .filter-input,
+        .filter-select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .filter-input:focus,
+        .filter-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table thead {
+            background: #f8fafc;
+        }
+
+        .data-table th {
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            font-size: 13px;
+            border-bottom: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+
+        .data-table th:hover {
+            color: #1e293b;
+            background: #f1f5f9;
+        }
+
+        .data-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .data-table tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-completed {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-processing {
+            background: #e9d5ff;
+            color: #6b21a8;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin: 0 2px;
+        }
+
+        .action-btn.view {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .action-btn.edit {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .action-btn.delete {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .pagination {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+        }
+
+        .pagination-info {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .pagination-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-btn {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 13px;
+            color: #475569;
+        }
+
+        .page-btn:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .page-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal-footer {
+            padding: 20px 24px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80px;
+            }
+
+            .sidebar .logo-text,
+            .sidebar .menu-text {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 80px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-anchor"></i>
+                </div>
+                <div class="logo-text"><a href="home-three.html">ITTTM</a></div>
+            </div>
+            <button class="toggle-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-menu">
+            <div class="menu-item active" onclick="showSection('home')">
+                <div class="menu-left">
+                    <i class="fas fa-home menu-icon"></i>
+                    <span class="menu-text">Dashboard</span>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="toggleSubmenu(event, 'transaction')">
+                <div class="menu-left">
+                    <i class="fas fa-exchange-alt menu-icon"></i>
+                    <span class="menu-text">Transactions</span>
+                </div>
+                <i class="fas fa-chevron-down menu-arrow" style="font-size: 12px;"></i>
+            </div>
+            <div class="submenu" id="submenu-transaction">
+                <div class="submenu-item" onclick="showSection('trials', event)">
+                    <i class="fas fa-vial"></i>
+                    <span class="submenu-text">Trials</span>
+                </div>
+                <div class="submenu-item" onclick="showSection('returns', event)">
+                    <i class="fas fa-undo"></i>
+                    <span class="submenu-text">Returns</span>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="showSection('master')">
+                <div class="menu-left">
+                    <i class="fas fa-database menu-icon"></i>
+                    <span class="menu-text">Master Data</span>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="showSection('users')">
+                <div class="menu-left">
+                    <i class="fas fa-users menu-icon"></i>
+                    <span class="menu-text">User Management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <h1 class="page-title" id="pageTitle">Dashboard Overview</h1>
+            <div class="user-info">
+                <div class="notification-btn">
+                    <i class="fas fa-bell" style="color: #3b82f6; font-size: 18px;"></i>
+                    <span class="notification-badge">5</span>
+                </div>
+                <div class="user-details">
+                    <div class="user-name">Admin User</div>
+                    <div class="user-role">System Administrator</div>
+                </div>
+                <div class="user-avatar">AU</div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            
+            <!-- Dashboard Section -->
+            <div id="section-home" class="content-section">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">248</div>
+                                <div class="stat-label">Total Trials</div>
+                            </div>
+                            <div class="stat-icon" style="background: #dbeafe; color: #1e40af;">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +12% from last month
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">42</div>
+                                <div class="stat-label">Active Returns</div>
+                            </div>
+                            <div class="stat-icon" style="background: #fef3c7; color: #92400e;">
+                                <i class="fas fa-undo"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +8% this week
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Ships Testing</div>
+                            </div>
+                            <div class="stat-icon" style="background: #e9d5ff; color: #6b21a8;">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +3 new vessels
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">98.5%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-icon" style="background: #dcfce7; color: #166534;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i> +0.5% improvement
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <div class="chart-card">
+                        <h3 class="chart-title"><i class="fas fa-chart-line"></i> Monthly Performance</h3>
+                        <canvas id="lineChart"></canvas>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Trial Status Distribution</h3>
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activity Table -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 class="table-title"><i class="fas fa-history"></i> Recent Activity</h3>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ship Name</th>
+                                    <th>Activity</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>#TRL-001</strong></td>
+                                    <td>INS Visakhapatnam</td>
+                                    <td>Weapons Integration Test</td>
+                                    <td>15 Feb 2025</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#RET-045</strong></td>
+                                    <td>INS Vikrant</td>
+                                    <td>System Return</td>
+                                    <td>14 Feb 2025</td>
+                                    <td><span class="status-badge status-pending">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#TRL-002</strong></td>
+                                    <td>INS Nilgiri</td>
+                                    <td>Propulsion Test</td>
+                                    <td>13 Feb 2025</td>
+                                    <td><span class="status-badge status-completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#TRL-003</strong></td>
+                                    <td>INS Arihant</td>
+                                    <td>Nuclear Systems Test</td>
+                                    <td>12 Feb 2025</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>#RET-046</strong></td>
+                                    <td>INS Kamorta</td>
+                                    <td>Equipment Return</td>
+                                    <td>11 Feb 2025</td>
+                                    <td><span class="status-badge status-processing">Processing</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trials Section -->
+            <div id="section-trials" class="content-section" style="display: none;">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 class="table-title"><i class="fas fa-vial"></i> Trials Management</h3>
+                        <button class="btn btn-success" onclick="openNewTrialModal()">
+                            <i class="fas fa-plus"></i> New Trial
+                        </button>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-search"></i> Search</label>
+                            <input type="text" class="filter-input" placeholder="Search trials..." id="trialsSearch" onkeyup="filterTrials()">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-filter"></i> Status</label>
+                            <select class="filter-select" id="trialsStatusFilter" onchange="filterTrials()">
+                                <option value="all">All Status</option>
+                                <option value="Active">Active</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-ship"></i> Ship Class</label>
+                            <select class="filter-select" id="trialsClassFilter" onchange="filterTrials()">
+                                <option value="all">All Classes</option>
+                                <option value="Destroyer">Destroyer</option>
+                                <option value="Frigate">Frigate</option>
+                                <option value="Submarine">Submarine</option>
+                            </select>
+                        </div>
+                        <div class="filter-group" style="display: flex; align-items: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="resetTrialsFilters()">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                            <button class="btn btn-primary" onclick="exportTrials()">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTrialsTable(0)">Trial ID <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTrialsTable(1)">Ship Name <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTrialsTable(2)">Class <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTrialsTable(3)">Test Type <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortTrialsTable(4)">Start Date <i class="fas fa-sort"></i></th>
+                                    <th>Progress</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trialsTableBody">
+                                <!-- Data populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-info">Showing <span id="trialsCount">8</span> of 8 trials</div>
+                        <div class="pagination-buttons">
+                            <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Returns Section -->
+            <div id="section-returns" class="content-section" style="display: none;">
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 class="table-title"><i class="fas fa-undo"></i> Returns Management</h3>
+                        <button class="btn btn-success">
+                            <i class="fas fa-plus"></i> New Return
+                        </button>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-search"></i> Search</label>
+                            <input type="text" class="filter-input" placeholder="Search returns..." id="returnsSearch" onkeyup="filterReturns()">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-filter"></i> Status</label>
+                            <select class="filter-select" id="returnsStatusFilter" onchange="filterReturns()">
+                                <option value="all">All Status</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Processing">Processing</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-tags"></i> Return Type</label>
+                            <select class="filter-select" id="returnsTypeFilter" onchange="filterReturns()">
+                                <option value="all">All Types</option>
+                                <option value="Equipment">Equipment</option>
+                                <option value="System">System</option>
+                                <option value="Component">Component</option>
+                            </select>
+                        </div>
+                        <div class="filter-group" style="display: flex; align-items: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="resetReturnsFilters()">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                            <button class="btn btn-primary" onclick="exportReturns()">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortReturnsTable(0)">Return ID <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortReturnsTable(1)">Ship Name <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortReturnsTable(2)">Item Type <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortReturnsTable(3)">Reason <i class="fas fa-sort"></i></th>
+                                    <th onclick="sortReturnsTable(4)">Return Date <i class="fas fa-sort"></i></th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="returnsTableBody">
+                                <!-- Data populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-info">Showing <span id="returnsCount">6</span> of 6 returns</div>
+                        <div class="pagination-buttons">
+                            <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Master Data Section -->
+            <div id="section-master" class="content-section" style="display: none;">
+                <h2 style="font-family: 'Poppins', sans-serif; font-size: 28px; color: #1e293b; margin-bottom: 20px; font-weight: 700;">Master Data Management</h2>
+                <p style="color: #64748b; margin-bottom: 30px;">Manage ships, equipment, and system configurations.</p>
+                
+                <div class="stats-grid" style="margin-bottom: 30px;">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">85</div>
+                                <div class="stat-label">Total Ships</div>
+                            </div>
+                            <div class="stat-icon" style="background: #dbeafe; color: #1e40af;">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">1240</div>
+                                <div class="stat-label">Equipment Items</div>
+                            </div>
+                            <div class="stat-icon" style="background: #fef3c7; color: #92400e;">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">48</div>
+                                <div class="stat-label">Test Categories</div>
+                            </div>
+                            <div class="stat-icon" style="background: #dcfce7; color: #166534;">
+                                <i class="fas fa-list"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ships Master Table -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 class="table-title"><i class="fas fa-ship"></i> Ships Master Data</h3>
+                        <button class="btn btn-success">
+                            <i class="fas fa-plus"></i> Add Ship
+                        </button>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-search"></i> Search</label>
+                            <input type="text" class="filter-input" placeholder="Search ships..." id="shipsSearch" onkeyup="filterShips()">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-filter"></i> Class</label>
+                            <select class="filter-select" id="shipsClassFilter" onchange="filterShips()">
+                                <option value="all">All Classes</option>
+                                <option value="Destroyer">Destroyer</option>
+                                <option value="Frigate">Frigate</option>
+                                <option value="Submarine">Submarine</option>
+                                <option value="Corvette">Corvette</option>
+                            </select>
+                        </div>
+                        <div class="filter-group" style="display: flex; align-items: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="resetShipsFilters()">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Ship ID</th>
+                                    <th>Ship Name</th>
+                                    <th>Class</th>
+                                    <th>Commissioned</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="shipsTableBody">
+                                <!-- Data populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-info">Showing <span id="shipsCount">10</span> of 85 ships</div>
+                        <div class="pagination-buttons">
+                            <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div id="section-users" class="content-section" style="display: none;">
+                <h2 style="font-family: 'Poppins', sans-serif; font-size: 28px; color: #1e293b; margin-bottom: 20px; font-weight: 700;">User Management</h2>
+                <p style="color: #64748b; margin-bottom: 30px;">Manage system users, roles, and permissions.</p>
+                
+                <div class="stats-grid" style="margin-bottom: 30px;">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">124</div>
+                                <div class="stat-label">Total Users</div>
+                            </div>
+                            <div class="stat-icon" style="background: #e9d5ff; color: #6b21a8;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Roles</div>
+                            </div>
+                            <div class="stat-icon" style="background: #fee2e2; color: #991b1b;">
+                                <i class="fas fa-user-tag"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-value">42</div>
+                                <div class="stat-label">Active Sessions</div>
+                            </div>
+                            <div class="stat-icon" style="background: #dcfce7; color: #166534;">
+                                <i class="fas fa-signal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3 class="table-title"><i class="fas fa-users"></i> Users List</h3>
+                        <button class="btn btn-success">
+                            <i class="fas fa-user-plus"></i> Add User
+                        </button>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-search"></i> Search</label>
+                            <input type="text" class="filter-input" placeholder="Search users..." id="usersSearch" onkeyup="filterUsers()">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-filter"></i> Role</label>
+                            <select class="filter-select" id="usersRoleFilter" onchange="filterUsers()">
+                                <option value="all">All Roles</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Engineer">Engineer</option>
+                                <option value="Viewer">Viewer</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label"><i class="fas fa-filter"></i> Status</label>
+                            <select class="filter-select" id="usersStatusFilter" onchange="filterUsers()">
+                                <option value="all">All Status</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="filter-group" style="display: flex; align-items: flex-end; gap: 10px;">
+                            <button class="btn btn-secondary" onclick="resetUsersFilters()">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Last Login</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- Data populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <div class="pagination-info">Showing <span id="usersCount">10</span> of 124 users</div>
+                        <div class="pagination-buttons">
+                            <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- New Trial Modal -->
+    <div id="newTrialModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-vial"></i> Initiate New Trial</h3>
+                <button class="modal-close" onclick="closeNewTrialModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="newTrialForm">
+                    <div class="form-group">
+                        <label class="form-label">Ship Name *</label>
+                        <select class="form-select" required>
+                            <option value="">Select a ship</option>
+                            <option value="INS Visakhapatnam">INS Visakhapatnam</option>
+                            <option value="INS Vikrant">INS Vikrant</option>
+                            <option value="INS Nilgiri">INS Nilgiri</option>
+                            <option value="INS Arihant">INS Arihant</option>
+                            <option value="INS Kamorta">INS Kamorta</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ship Class *</label>
+                        <select class="form-select" required>
+                            <option value="">Select class</option>
+                            <option value="Destroyer">Destroyer</option>
+                            <option value="Aircraft Carrier">Aircraft Carrier</option>
+                            <option value="Frigate">Frigate</option>
+                            <option value="Submarine">Submarine</option>
+                            <option value="Corvette">Corvette</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Test Type *</label>
+                        <select class="form-select" required>
+                            <option value="">Select test type</option>
+                            <option value="Weapons Integration">Weapons Integration</option>
+                            <option value="Sea Trials">Sea Trials</option>
+                            <option value="Propulsion Test">Propulsion Test</option>
+                            <option value="Nuclear Systems">Nuclear Systems</option>
+                            <option value="ASW Systems">ASW Systems</option>
+                            <option value="Radar Systems">Radar Systems</option>
+                            <option value="Communication Systems">Communication Systems</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Start Date *</label>
+                        <input type="date" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Expected Duration (days) *</label>
+                        <input type="number" class="form-input" placeholder="Enter duration in days" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Lead Engineer *</label>
+                        <select class="form-select" required>
+                            <option value="">Select engineer</option>
+                            <option value="Cmdr. Rajesh Kumar">Cmdr. Rajesh Kumar</option>
+                            <option value="Lt. Cmdr. Priya Singh">Lt. Cmdr. Priya Singh</option>
+                            <option value="Lt. Anil Sharma">Lt. Anil Sharma</option>
+                            <option value="Cmdr. Vikram Patel">Cmdr. Vikram Patel</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Priority</label>
+                        <select class="form-select">
+                            <option value="High">High</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-textarea" placeholder="Enter trial description and objectives..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeNewTrialModal()">Cancel</button>
+                <button class="btn btn-success" onclick="submitNewTrial()">
+                    <i class="fas fa-check"></i> Create Trial
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Data
+        const trialsData = [
+            {id: 'TRL-001', ship: 'INS Visakhapatnam', class: 'Destroyer', test: 'Weapons Integration', date: '2025-02-10', progress: 85, status: 'Active'},
+            {id: 'TRL-002', ship: 'INS Vikrant', class: 'Aircraft Carrier', test: 'Sea Trials', date: '2025-02-08', progress: 65, status: 'Active'},
+            {id: 'TRL-003', ship: 'INS Nilgiri', class: 'Frigate', test: 'Propulsion Test', date: '2025-02-05', progress: 95, status: 'Active'},
+            {id: 'TRL-004', ship: 'INS Arihant', class: 'Submarine', test: 'Nuclear Systems', date: '2025-02-03', progress: 40, status: 'Pending'},
+            {id: 'TRL-005', ship: 'INS Kamorta', class: 'Corvette', test: 'ASW Systems', date: '2025-02-01', progress: 100, status: 'Completed'},
+            {id: 'TRL-006', ship: 'INS Vagir', class: 'Submarine', test: 'Diving Tests', date: '2025-01-28', progress: 75, status: 'Active'},
+            {id: 'TRL-007', ship: 'INS Mormugao', class: 'Destroyer', test: 'Radar Systems', date: '2025-01-25', progress: 55, status: 'Active'},
+            {id: 'TRL-008', ship: 'INS Tushil', class: 'Frigate', test: 'Communication', date: '2025-01-22', progress: 30, status: 'Pending'}
+        ];
+
+        const returnsData = [
+            {id: 'RET-001', ship: 'INS Visakhapatnam', type: 'Equipment', reason: 'Defective sensor', date: '2025-02-14', status: 'Pending'},
+            {id: 'RET-002', ship: 'INS Vikrant', type: 'System', reason: 'Software upgrade', date: '2025-02-13', status: 'Processing'},
+            {id: 'RET-003', ship: 'INS Nilgiri', type: 'Component', reason: 'Maintenance', date: '2025-02-12', status: 'Completed'},
+            {id: 'RET-004', ship: 'INS Arihant', type: 'Equipment', reason: 'Failed calibration', date: '2025-02-10', status: 'Pending'},
+            {id: 'RET-005', ship: 'INS Kamorta', type: 'System', reason: 'Compatibility issue', date: '2025-02-08', status: 'Processing'},
+            {id: 'RET-006', ship: 'INS Vagir', type: 'Component', reason: 'Wear and tear', date: '2025-02-05', status: 'Completed'}
+        ];
+
+        const shipsData = [
+            {id: 'SHP-001', name: 'INS Visakhapatnam', class: 'Destroyer', commissioned: '2021-11-21', status: 'Active'},
+            {id: 'SHP-002', name: 'INS Vikrant', class: 'Aircraft Carrier', commissioned: '2022-09-02', status: 'Active'},
+            {id: 'SHP-003', name: 'INS Nilgiri', class: 'Frigate', commissioned: '2024-03-15', status: 'Active'},
+            {id: 'SHP-004', name: 'INS Arihant', class: 'Submarine', commissioned: '2016-08-13', status: 'Active'},
+            {id: 'SHP-005', name: 'INS Kamorta', class: 'Corvette', commissioned: '2014-08-23', status: 'Active'},
+            {id: 'SHP-006', name: 'INS Vagir', class: 'Submarine', commissioned: '2023-01-23', status: 'Active'},
+            {id: 'SHP-007', name: 'INS Mormugao', class: 'Destroyer', commissioned: '2022-12-18', status: 'Active'},
+            {id: 'SHP-008', name: 'INS Tushil', class: 'Frigate', commissioned: '2024-12-09', status: 'Active'},
+            {id: 'SHP-009', name: 'INS Kolkata', class: 'Destroyer', commissioned: '2014-08-16', status: 'Active'},
+            {id: 'SHP-010', name: 'INS Shivalik', class: 'Frigate', commissioned: '2010-04-29', status: 'Active'}
+        ];
+
+        const usersData = [
+            {id: 'USR-001', name: 'Cmdr. Rajesh Kumar', email: 'rajesh.kumar@navy.in', role: 'Admin', lastLogin: '2025-02-15 09:30', status: 'Active'},
+            {id: 'USR-002', name: 'Lt. Cmdr. Priya Singh', email: 'priya.singh@navy.in', role: 'Manager', lastLogin: '2025-02-15 08:15', status: 'Active'},
+            {id: 'USR-003', name: 'Lt. Anil Sharma', email: 'anil.sharma@navy.in', role: 'Engineer', lastLogin: '2025-02-14 17:45', status: 'Active'},
+            {id: 'USR-004', name: 'Cmdr. Vikram Patel', email: 'vikram.patel@navy.in', role: 'Manager', lastLogin: '2025-02-14 16:20', status: 'Active'},
+            {id: 'USR-005', name: 'Lt. Sanjay Gupta', email: 'sanjay.gupta@navy.in', role: 'Engineer', lastLogin: '2025-02-14 14:30', status: 'Active'},
+            {id: 'USR-006', name: 'Sub Lt. Meera Reddy', email: 'meera.reddy@navy.in', role: 'Viewer', lastLogin: '2025-02-13 11:00', status: 'Active'},
+            {id: 'USR-007', name: 'Lt. Cmdr. Rahul Joshi', email: 'rahul.joshi@navy.in', role: 'Engineer', lastLogin: '2025-02-12 15:45', status: 'Inactive'},
+            {id: 'USR-008', name: 'Cmdr. Deepak Nair', email: 'deepak.nair@navy.in', role: 'Admin', lastLogin: '2025-02-15 10:20', status: 'Active'},
+            {id: 'USR-009', name: 'Lt. Anjali Desai', email: 'anjali.desai@navy.in', role: 'Viewer', lastLogin: '2025-02-14 09:30', status: 'Active'},
+            {id: 'USR-010', name: 'Sub Lt. Karthik Iyer', email: 'karthik.iyer@navy.in', role: 'Viewer', lastLogin: '2025-02-13 16:00', status: 'Active'}
+        ];
+
+        let filteredTrials = [...trialsData];
+        let filteredReturns = [...returnsData];
+        let filteredShips = [...shipsData];
+        let filteredUsers = [...usersData];
+
+        // Toggle Sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+        }
+
+        // Toggle Submenu
+        function toggleSubmenu(event, menu) {
+            event.stopPropagation();
+            const submenu = document.getElementById('submenu-' + menu);
+            const menuItem = event.currentTarget;
+            submenu.classList.toggle('open');
+            menuItem.classList.toggle('open');
+        }
+
+        // Show Section
+        function showSection(section, event) {
+            if (event) event.stopPropagation();
+            
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            
+            // Show selected section
+            document.getElementById('section-' + section).style.display = 'block';
+            
+            // Update page title
+            const titles = {
+                'home': 'Dashboard Overview',
+                'trials': 'Trials Management',
+                'returns': 'Returns Management',
+                'master': 'Master Data Management',
+                'users': 'User Management'
+            };
+            document.getElementById('pageTitle').textContent = titles[section] || 'Dashboard';
+            
+            // Update active menu item
+            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.submenu-item').forEach(item => item.classList.remove('active'));
+            
+            if (event) {
+                const target = event.currentTarget;
+                if (target.classList.contains('submenu-item')) {
+                    target.classList.add('active');
+                } else {
+                    target.classList.add('active');
+                }
+            }
+        }
+
+        // Modal Functions
+        function openNewTrialModal() {
+            document.getElementById('newTrialModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNewTrialModal() {
+            document.getElementById('newTrialModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitNewTrial() {
+            alert('New trial initiated successfully!');
+            closeNewTrialModal();
+            document.getElementById('newTrialForm').reset();
+        }
+
+        // Close modal on outside click
+        document.getElementById('newTrialModal').addEventListener('click', (e) => {
+            if (e.target.id === 'newTrialModal') closeNewTrialModal();
+        });
+
+        // Populate Trials Table
+        function populateTrialsTable(data = filteredTrials) {
+            const tbody = document.getElementById('trialsTableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(trial => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${trial.id}</strong></td>
+                    <td>${trial.ship}</td>
+                    <td>${trial.class}</td>
+                    <td>${trial.test}</td>
+                    <td>${trial.date}</td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="progress-bar-container" style="flex: 1;">
+                                <div class="progress-bar-fill" style="width: ${trial.progress}%;"></div>
+                            </div>
+                            <span style="font-size: 13px; font-weight: 600;">${trial.progress}%</span>
+                        </div>
+                    </td>
+                    <td><span class="status-badge status-${trial.status.toLowerCase()}">${trial.status}</span></td>
+                    <td>
+                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            document.getElementById('trialsCount').textContent = data.length;
+        }
+
+        // Filter Trials
+        function filterTrials() {
+            const search = document.getElementById('trialsSearch').value.toLowerCase();
+            const status = document.getElementById('trialsStatusFilter').value;
+            const shipClass = document.getElementById('trialsClassFilter').value;
+            
+            filteredTrials = trialsData.filter(trial => {
+                const matchSearch = trial.ship.toLowerCase().includes(search) || trial.id.toLowerCase().includes(search);
+                const matchStatus = status === 'all' || trial.status === status;
+                const matchClass = shipClass === 'all' || trial.class === shipClass;
+                return matchSearch && matchStatus && matchClass;
+            });
+            
+            populateTrialsTable();
+        }
+
+        // Reset Trials Filters
+        function resetTrialsFilters() {
+            document.getElementById('trialsSearch').value = '';
+            document.getElementById('trialsStatusFilter').value = 'all';
+            document.getElementById('trialsClassFilter').value = 'all';
+            filteredTrials = [...trialsData];
+            populateTrialsTable();
+        }
+
+        // Sort Trials Table
+        let trialsSortDirection = 1;
+        function sortTrialsTable(col) {
+            const keys = ['id', 'ship', 'class', 'test', 'date'];
+            const key = keys[col];
+            
+            filteredTrials.sort((a, b) => {
+                if (a[key] < b[key]) return -1 * trialsSortDirection;
+                if (a[key] > b[key]) return 1 * trialsSortDirection;
+                return 0;
+            });
+            
+            trialsSortDirection *= -1;
+            populateTrialsTable();
+        }
+
+        // Export Trials
+        function exportTrials() {
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "Trial ID,Ship Name,Class,Test Type,Start Date,Progress,Status\n"
+                + filteredTrials.map(trial => 
+                    `${trial.id},${trial.ship},${trial.class},${trial.test},${trial.date},${trial.progress}%,${trial.status}`
+                ).join("\n");
+            
+            const link = document.createElement("a");
+            link.setAttribute("href", encodeURI(csvContent));
+            link.setAttribute("download", "trials_data.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Populate Returns Table
+        function populateReturnsTable(data = filteredReturns) {
+            const tbody = document.getElementById('returnsTableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(ret => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${ret.id}</strong></td>
+                    <td>${ret.ship}</td>
+                    <td>${ret.type}</td>
+                    <td>${ret.reason}</td>
+                    <td>${ret.date}</td>
+                    <td><span class="status-badge status-${ret.status.toLowerCase()}">${ret.status}</span></td>
+                    <td>
+                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            document.getElementById('returnsCount').textContent = data.length;
+        }
+
+        // Filter Returns
+        function filterReturns() {
+            const search = document.getElementById('returnsSearch').value.toLowerCase();
+            const status = document.getElementById('returnsStatusFilter').value;
+            const type = document.getElementById('returnsTypeFilter').value;
+            
+            filteredReturns = returnsData.filter(ret => {
+                const matchSearch = ret.ship.toLowerCase().includes(search) || ret.id.toLowerCase().includes(search);
+                const matchStatus = status === 'all' || ret.status === status;
+                const matchType = type === 'all' || ret.type === type;
+                return matchSearch && matchStatus && matchType;
+            });
+            
+            populateReturnsTable();
+        }
+
+        // Reset Returns Filters
+        function resetReturnsFilters() {
+            document.getElementById('returnsSearch').value = '';
+            document.getElementById('returnsStatusFilter').value = 'all';
+            document.getElementById('returnsTypeFilter').value = 'all';
+            filteredReturns = [...returnsData];
+            populateReturnsTable();
+        }
+
+        // Sort Returns Table
+        let returnsSortDirection = 1;
+        function sortReturnsTable(col) {
+            const keys = ['id', 'ship', 'type', 'reason', 'date'];
+            const key = keys[col];
+            
+            filteredReturns.sort((a, b) => {
+                if (a[key] < b[key]) return -1 * returnsSortDirection;
+                if (a[key] > b[key]) return 1 * returnsSortDirection;
+                return 0;
+            });
+            
+            returnsSortDirection *= -1;
+            populateReturnsTable();
+        }
+
+        // Export Returns
+        function exportReturns() {
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "Return ID,Ship Name,Item Type,Reason,Return Date,Status\n"
+                + filteredReturns.map(ret => 
+                    `${ret.id},${ret.ship},${ret.type},${ret.reason},${ret.date},${ret.status}`
+                ).join("\n");
+            
+            const link = document.createElement("a");
+            link.setAttribute("href", encodeURI(csvContent));
+            link.setAttribute("download", "returns_data.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Populate Ships Table
+        function populateShipsTable(data = filteredShips) {
+            const tbody = document.getElementById('shipsTableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(ship => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${ship.id}</strong></td>
+                    <td>${ship.name}</td>
+                    <td>${ship.class}</td>
+                    <td>${ship.commissioned}</td>
+                    <td><span class="status-badge status-${ship.status.toLowerCase()}">${ship.status}</span></td>
+                    <td>
+                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            document.getElementById('shipsCount').textContent = data.length;
+        }
+
+        // Filter Ships
+        function filterShips() {
+            const search = document.getElementById('shipsSearch').value.toLowerCase();
+            const shipClass = document.getElementById('shipsClassFilter').value;
+            
+            filteredShips = shipsData.filter(ship => {
+                const matchSearch = ship.name.toLowerCase().includes(search) || ship.id.toLowerCase().includes(search);
+                const matchClass = shipClass === 'all' || ship.class === shipClass;
+                return matchSearch && matchClass;
+            });
+            
+            populateShipsTable();
+        }
+
+        // Reset Ships Filters
+        function resetShipsFilters() {
+            document.getElementById('shipsSearch').value = '';
+            document.getElementById('shipsClassFilter').value = 'all';
+            filteredShips = [...shipsData];
+            populateShipsTable();
+        }
+
+        // Populate Users Table
+        function populateUsersTable(data = filteredUsers) {
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${user.id}</strong></td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td><span class="status-badge status-${user.role.toLowerCase()}">${user.role}</span></td>
+                    <td>${user.lastLogin}</td>
+                    <td><span class="status-badge status-${user.status.toLowerCase()}">${user.status}</span></td>
+                    <td>
+                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            document.getElementById('usersCount').textContent = data.length;
+        }
+
+        // Filter Users
+        function filterUsers() {
+            const search = document.getElementById('usersSearch').value.toLowerCase();
+            const role = document.getElementById('usersRoleFilter').value;
+            const status = document.getElementById('usersStatusFilter').value;
+            
+            filteredUsers = usersData.filter(user => {
+                const matchSearch = user.name.toLowerCase().includes(search) || user.email.toLowerCase().includes(search) || user.id.toLowerCase().includes(search);
+                const matchRole = role === 'all' || user.role === role;
+                const matchStatus = status === 'all' || user.status === status;
+                return matchSearch && matchRole && matchStatus;
+            });
+            
+            populateUsersTable();
+        }
+
+        // Reset Users Filters
+        function resetUsersFilters() {
+            document.getElementById('usersSearch').value = '';
+            document.getElementById('usersRoleFilter').value = 'all';
+            document.getElementById('usersStatusFilter').value = 'all';
+            filteredUsers = [...usersData];
+            populateUsersTable();
+        }
+
+        // Initialize Charts
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                datasets: [{
+                    label: 'Trials Conducted',
+                    data: [28, 32, 25, 35, 42, 38, 45],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: 'white',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: { 
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        grid: { color: '#f1f5f9' }
+                    },
+                    x: { 
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Active', 'Pending', 'Completed'],
+                datasets: [{
+                    data: [42, 18, 40],
+                    backgroundColor: ['#3b82f6', '#fbbf24', '#10b981'],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: { 
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // Initialize tables
+        populateTrialsTable();
+        populateReturnsTable();
+        populateShipsTable();
+        populateUsersTable();
+    </script>
+</body>
+</html>
